@@ -1,0 +1,15 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    background-color: rgb(4, 0, 255);
+}
+.login-form {
+    justify-content: center;
+    width: 500px;
+    background-color: white;
+}
+.header {
+    font-size: 36px;
+    text-align: center;
+}
