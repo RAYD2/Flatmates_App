@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     return (
@@ -15,7 +16,7 @@ const Login = () => {
                     <button type="submit">Login</button>
                 </div>
                 <div className="register-link">
-                    <a href="Register.js">Click Here</a>
+                    <Link to='/Register'>Register Account</Link>
                 </div>
             </form>
         </div>
