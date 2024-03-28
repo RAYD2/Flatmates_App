@@ -1,0 +1,40 @@
+
+
+.navBar ul {
+    background-color: rgb(255, 255, 255);
+    margin-top: 3px;
+    padding: 0;
+    padding-top: 30px;
+    width: 200px;
+    position: absolute;
+    top: 0;
+    height: 95%;
+
+   
+
+}
+
+.navBar li{
+    display: block;
+    color: black;
+    padding-bottom: 20px;
+    border: 16px;
+    margin-left: 5px;
+    
+}
+
+.navBar li :hover{
+   background-color: blue;
+   border: 16px;
+   
+   
+}
+
+.sideItem{
+    display: grid;
+    grid-template-columns: 35% 35%;
+    align-items: center;
+    
+}
+
+

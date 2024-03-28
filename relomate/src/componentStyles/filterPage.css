@@ -1,0 +1,92 @@
+.searchFilterFields{
+    background-color: #E9EFF3;
+    color: black;
+    display: grid;
+    gap: 5px;
+    height: 587px;
+    max-height: 85%;
+    margin: auto;
+    border-radius: 16px;
+    width: 700pt;
+}
+
+
+
+.searchFilterFields select{
+    margin: auto;
+    margin-top: -50px;
+    width: 500px;
+    height: 59px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: #D9D9D9;
+    text-decoration: none;
+    font-size: 24px;
+    color: #000;
+    
+    
+}
+
+.searchFilterFields label{
+    margin: auto;
+    margin-bottom: 50px;
+    color: #000;
+    font-family: Kanit;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.searchFilterFields #additional{
+    width: 313px;
+    height: 59px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    border: 1px solid #000;
+    background: #2A11C8;
+    margin: auto;
+
+    color: #FFFAFA;
+    -webkit-text-stroke-width: 1;
+    -webkit-text-stroke-color: #000;
+    font-family: Kanit;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.priceContainer{
+    display: grid;
+
+}
+
+
+
+
+
+.priceCalculation{
+    display: flex;
+    padding-top: 10px;
+    margin: auto;  
+    gap:10px;
+    
+}
+
+
+.priceCalculation input{
+    width: 247px;
+    font-size: 32px;
+    color: #000;
+}
+
+#searchListing{
+    width: 900px;
+    margin-top: 10px;
+    background-color : #2A11C8;
+    border: 3px solid white;
+    color: white;
+    border-radius: 5px;
+}
+
