@@ -1,19 +1,13 @@
-
-import React  from 'react';
-import NavBar from "../Components/Navbar";
-import SavedSearches from "../Components/SavedSearches";
 import SavedProperties from "../Components/SavedProperties";
-import '../componentStyles/HomePage.css'
-import SearchBar from "../Components/SearchBar";
-function Homepage(){
-    return(
-        <>
-            <SearchBar />
-            <SavedProperties />
-            <SavedSearches />
-            <NavBar/>
-        </>
-    )
+import SavedSearches from "../Components/SavedSearches";
+import NavBar from "../Components/Navbar";
+import "../index.css";
+export default function Homepage() {
+  return (
+    <>
+      <NavBar />
+      <SavedProperties />
+      <SavedSearches />
+    </>
+  );
 }
-
-export default Homepage
