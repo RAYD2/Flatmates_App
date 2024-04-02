@@ -34,6 +34,7 @@ function App() {
         <NavBar/>
         <Routes>
           <Route exact path="/" element={<Homepage />} />
+          <Route exact path="/properties" element={<Properties />} />
 
           <Route exact path="/Profile" element={<Profile />} />
 
