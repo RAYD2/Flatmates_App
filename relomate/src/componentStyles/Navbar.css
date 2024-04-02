@@ -43,7 +43,6 @@
   background: lightgray;
 }
 
-
 .nav-selected{
   border-radius: 20px;
   background: lightgray;
@@ -61,5 +60,66 @@
 
   .menu-button{
     display: block;
+
+    height: 40px;
+    width: 40px;
+
+    margin: 10px;
+    padding: 5px;
+
+    border: 1px solid grey;
+    border-radius: 10px;
+
+    transition: 0.4s ease-in;
+  }
+
+  .menu-button:hover{
+    background: lightgray;
+    transition: 0.4s ease-in;
+  }
+
+  .d-flex{
+    display: none;
+  }
+
+  .dropdown-container{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 40%; 
+    height: 100vh; 
+    background-color: rgb(248, 249, 250, 0.5); 
+    backdrop-filter: blur(5px); /* Adjust the blur radius as needed */
+    z-index: 1;
+  }
+
+  .dropdown-list{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .dropdown-default{
+    padding: 30px;
+  
+    text-decoration: none;
+    color: black;
+  
+    transition: 0.4s ease-in;
+    background: none;
+  }
+  .dropdown-default:hover{
+    background: lightgray;
+  }
+
+  .dropdown-selected{
+    padding: 30px;
+  
+    cursor: default;
+    text-decoration: none;
+    color: black;
+  
+    transition: 0.4s ease-in;
+    background: none;
   }
 }

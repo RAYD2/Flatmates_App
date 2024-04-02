@@ -21,6 +21,13 @@ function NavBar() {
     }
   };
 
+
+  const [isOpen, setIsOpen] = useState(false);
+  
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  }
+
   const location = useLocation();
   // TODO: Hover effects, dynamic css based on location
   // Add links here and routes in App.js
@@ -57,9 +64,23 @@ function NavBar() {
           </form>
          
 
-          <button className="menu-button">
-            <img src={bars} style={{ width: '40px', height: '40px', padding: '0px' }}/>
-          </button>
+          <button className="menu-button" onClick={toggleMenu}>
+            <img src={bars}/>
+            
+            {
+              isOpen && (
+                <div className="dropdown-container">
+                  <div className="dropdown-list">
+                    <button className="dropdown-default" onClick={toggleMenu}>Close</button>
+                    <Link to ='/Profile' className={location.pathname === '/Profile' ? 'dropdown-selected' : 'dropdown-default'}>Profile</Link>
+                    <Link to ='/Messages' className={location.pathname === '/Messages' ? 'dropdown-selected' : 'dropdown-default'}>Messages</Link>
+                    <Link to ='/Login' className={location.pathname === '/Login' ? 'dropdown-selected' : 'dropdown-default'}>Login</Link>
+                  </div>
+                </div>
+              )
+            }
+            </button>
+          
         </div>
       </nav>
     </>
