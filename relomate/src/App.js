@@ -4,7 +4,8 @@ import "./App.css";
 import React from "react";
 import Homepage from "./Pages/homepage";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Properties from "./Components/allProperties";
+import Filters from "./Pages/filter";
+import Results from "./Pages/results";
 function App() {
   return (
     <>
@@ -21,7 +22,8 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Homepage />} />
-          <Route exact path="/properties" element={<Properties />} />
+          <Route exact path="/filter" element={<Filters />} />
+          <Route exact path="/properties" element={<Results />} />
         </Routes>
       </Router>
     </>

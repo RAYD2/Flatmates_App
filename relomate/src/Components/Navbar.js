@@ -7,19 +7,19 @@ import "../ComponentStyles/Navbar.css";
 import apiCall from "../apis/propertyfind";
 function NavBar() {
   const [responseData, setResponseData] = useState(null);
+  const [defaultSearch, setDefaultSearch] = useState("Search e.g. Newcastle");
 
   const handleClick = async () => {
     try {
       const data = await apiCall();
       setResponseData(data);
     } catch (error) {
-      // Handle errors if any
       console.error("Error occurred:", error);
-      // Optionally, update state or show error message to the user
     }
   };
+
   return (
-    <>
+    <div className="mainNav">
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
           <a className="navbar-brand">ReloMate</a>
@@ -59,13 +59,20 @@ function NavBar() {
               <input
                 className="form-control me-2"
                 type="search"
-                placeholder="Search e.g. Newcastle"
+                id="searchButton"
+                placeholder={defaultSearch}
                 aria-label="Search"
               />
-              <Link to="/properties">
+              <Link to="/filter">
                 <button
                   className="btn btn-outline-primary"
-                  onClick={handleClick}
+                  onClick={() => {
+                    setDefaultSearch("Barnet");
+                    localStorage.setItem(
+                      "currentSearch",
+                      document.getElementById("searchButton").value
+                    );
+                  }}
                 >
                   Search
                 </button>
@@ -74,7 +81,7 @@ function NavBar() {
           </div>
         </div>
       </nav>
-    </>
+    </div>
   );
 }
 
