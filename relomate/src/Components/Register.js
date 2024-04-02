@@ -5,6 +5,15 @@ const Register = () => {
         <div className="Register-form">
             <h1 className="header">Register</h1>
             <form action="#">
+                <div className='account-type'>
+                    <select name='types' id='types'>
+                        <option value='selectAccount'>Select Account Type</option>
+                        <option value='consultant'>FDM Consultant</option>
+                        <option value='admin'>System Admin</option>
+                        <option value='landlord'>Landlord</option>
+                        <option value='REA'>Real Estate Agent</option>
+                    </select>
+                </div>
                 <div className="fName-box">
                     <input type="text" name="firstName" placeholder="First Name" required></input>
                 </div>
