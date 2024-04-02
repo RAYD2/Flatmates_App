@@ -14,11 +14,10 @@ body {
     width: 700px;
     background-color: transparent;
     padding: 20px 40px;
-    backdrop-filter: blur(30px);
+    backdrop-filter: blur(10px);
     border: 2px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-
-    ;
+    color: white;
 }
 .header {
     font-size: 48px;
@@ -46,9 +45,21 @@ body {
     font-size: 18px;
 }
 
-.register-link {
+.register-link{
     font-size: 14px;
     text-align: right;
+    text-decoration: none;
+    font-weight: 500;
+
+}
+
+.register-link Link {
+    text-decoration: none;
+    color: white;
+}
+
+.register-link a:hover {
+    background-color: pink;
 }
 
 .username-box input::placeholder{
