@@ -7,21 +7,16 @@
 }
 
 .nav-title{
+  padding-left: 20px;
+  margin: 20px;
+  text-decoration: none;
   font-size: 1.5rem;
   font-weight: 400;
-  padding-left: 20px;
-  padding-right: 20px;
-  margin: 20px;
-
-  text-decoration: none;
   color: black;
 }
 
-.nav-left, .nav-right{
-  display: flex;
-  align-items: center;
-}
-
+.nav-left,
+.nav-right,
 .nav-list{
   display: flex;
   align-items: center;
@@ -29,13 +24,13 @@
 
 .nav-default,
 .nav-selected{
+  width: 100px;
   padding: 10px;
   margin: 10px;
-
+  text-align: center;
   text-decoration: none;
   color: black;
-
-  transition: 0.4s ease-in;
+  transition: 0.2s ease-in;
   border-radius: 20px;
 }
 
@@ -60,17 +55,13 @@
 
   .menu-button{
     display: block;
-
     height: 40px;
     width: 40px;
-
     margin: 10px;
     padding: 5px;
-
     border: 1px solid grey;
     border-radius: 10px;
-
-    transition: 0.4s ease-in;
+    transition: 0.2s ease-in;
   }
 
   .menu-button:hover{
@@ -88,7 +79,7 @@
     right: 0;
     width: 40%; 
     height: 100vh; 
-    background-color: rgb(248, 249, 250, 0.5); 
+    background-color: rgb(255, 255, 255, 0.6); 
     backdrop-filter: blur(5px); /* Adjust the blur radius as needed */
     z-index: 1;
   }
@@ -97,29 +88,26 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+    font-weight: 650;
   }
 
   .dropdown-default{
     padding: 30px;
-  
     text-decoration: none;
     color: black;
-  
-    transition: 0.4s ease-in;
+    transition: 0.2s ease-in;
     background: none;
   }
+  
   .dropdown-default:hover{
-    background: lightgray;
+    background: rgba(211, 211, 211, 0.8);
   }
 
   .dropdown-selected{
     padding: 30px;
-  
     cursor: default;
-    text-decoration: none;
     color: black;
-  
     transition: 0.4s ease-in;
-    background: none;
+    background: rgba(211, 211, 211, 0.8);
   }
 }
