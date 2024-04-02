@@ -1,10 +1,12 @@
 import NavBar from "../Components/Navbar";
-import Properties from "../Components/allProperties";
+
+import PropertyListings from "../apis/apiProperty";
 
 export default function Results() {
   return (
     <>
-      <Properties />
+      <PropertyListings />
+
     </>
   );
 }

@@ -9,18 +9,16 @@ import apiCall from "../apis/propertyfind";
 
 function NavBar() {
   const [responseData, setResponseData] = useState(null);
+  const [defaultSearch, setDefaultSearch] = useState("Search e.g. Newcastle");
 
   const handleClick = async () => {
     try {
       const data = await apiCall();
       setResponseData(data);
     } catch (error) {
-      // Handle errors if any
       console.error("Error occurred:", error);
-      // Optionally, update state or show error message to the user
     }
   };
-
 
   const [isOpen, setIsOpen] = useState(false);
   
@@ -63,10 +61,8 @@ function NavBar() {
             </Link>
           </form>
          
-
           <button className="menu-button" onClick={toggleMenu}>
             <img src={bars}/>
-            
             {
               isOpen && (
                 <div className="dropdown-container">
@@ -79,11 +75,11 @@ function NavBar() {
                 </div>
               )
             }
-            </button>
+          </button>
           
         </div>
       </nav>
-    </>
+    </div>
   );
 }
 
