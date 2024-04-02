@@ -1,10 +1,12 @@
 import { React, useState, useHistory, useEffect } from "react";
-
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import "../index.css";
 import "../ComponentStyles/Navbar.css";
+import bars from '../assets/bars.svg';
+
 import apiCall from "../apis/propertyfind";
+
 function NavBar() {
   const [responseData, setResponseData] = useState(null);
 
@@ -18,60 +20,46 @@ function NavBar() {
       // Optionally, update state or show error message to the user
     }
   };
+
+  const location = useLocation();
+  // TODO: Hover effects, dynamic css based on location
+  // Add links here and routes in App.js
+
   return (
     <>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
-          <a className="navbar-brand">ReloMate</a>
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page">
-                  Profile
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link">Messages</a>
-              </li>
-
-              <li className="nav-item">
-                <a
-                  className="nav-link disabled"
-                  tabIndex="-1"
-                  aria-disabled="true"
-                >
-                  Login
-                </a>
-              </li>
-            </ul>
-            <form className="d-flex">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search e.g. Newcastle"
-                aria-label="Search"
-              />
-              <Link to="/properties">
-                <button
-                  className="btn btn-outline-primary"
-                  onClick={handleClick}
-                >
-                  Search
-                </button>
-              </Link>
-            </form>
+      <nav className="nav-container">
+        <div className="nav-left">
+          <Link to="/" className="nav-title">ReloMate</Link>
+          <div className="nav-list">
+            <Link to ='/Profile' className={location.pathname === '/Profile' ? 'nav-selected' : 'nav-default'}>Profile</Link>
+            <Link to ='/Messages' className={location.pathname === '/Messages' ? 'nav-selected' : 'nav-default'}>Messages</Link>
+            <Link to ='/Login' className={location.pathname === '/Login' ? 'nav-selected' : 'nav-default'}>Login</Link>
           </div>
+        </div>
+
+        <div className="nav-right">     
+
+          <form className="d-flex">
+            <input
+              className="form-control me-2"
+              type="search"
+              placeholder="Search e.g. Newcastle"
+              aria-label="Search"
+            />
+            <Link to="/properties">
+              <button
+                className="btn btn-outline-primary"
+                onClick={handleClick}
+              >
+                Search
+              </button>
+            </Link>
+          </form>
+         
+
+          <button className="menu-button">
+            <img src={bars} style={{ width: '40px', height: '40px', padding: '0px' }}/>
+          </button>
         </div>
       </nav>
     </>

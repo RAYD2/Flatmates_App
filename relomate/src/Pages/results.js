@@ -4,7 +4,6 @@ import Properties from "../Components/allProperties";
 export default function Results() {
   return (
     <>
-      <NavBar />
       <Properties />
     </>
   );

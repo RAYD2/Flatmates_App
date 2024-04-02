@@ -5,7 +5,6 @@ import "../index.css";
 export default function Homepage() {
   return (
     <>
-      <NavBar />
       <SavedProperties />
       <SavedSearches />
     </>

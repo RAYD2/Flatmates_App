@@ -1,11 +1,17 @@
 import React, {useRef} from 'react';
+
+import NavBar from './Navbar';
+
 import './Profile.css'
+import { Router } from 'react-router-dom';
+
 
 // Define your component
 const Profile = () => {
 
   return (
     <>
+        
         <div className='background-container'>
             <div className='background top'/>
             <div className='background bottom'/>
@@ -56,6 +62,7 @@ const Profile = () => {
                 
            
         </div>
+       
     </>
   );
 };
