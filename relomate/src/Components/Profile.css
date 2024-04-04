@@ -61,11 +61,52 @@ body {
     margin-top: 1%;
 }
 
-.profile-picture{
+.profile-picture-container {
+    position: relative;
+    display: inline-block;
     border: 2px solid black;
     border-radius: 50%;
+    width: 200px;
+    height: 200px;
     min-width: 200px;
-    min-height: 200px;
+    background-position: center;
+  }
+
+.profile-picture-container:hover {
+    background-image: url('../assets/menu.png');
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    transition: 0.3s ease;
+}
+
+.profile-picture-input {
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+input[type="file"] {
+    display: inline-block; /* or display: block; */
+}
+
+.picture-selected{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.profile-picture{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    z-index: -1;
 }
 
 .profile-name{

@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef, useState} from 'react';
 
 import NavBar from './Navbar';
 
@@ -9,6 +9,22 @@ import { Router } from 'react-router-dom';
 // Define your component
 const Profile = () => {
 
+    const [profileImage, setProfileImage] = useState(null);
+
+    const handleFileChange = (event) => {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e) {
+        setProfileImage(e.target.result);
+        };
+
+        reader.readAsDataURL(file);
+    };
+
+    //TODO: Save selected image somewhere
+    // button to EDIT
+
   return (
     <>
         
@@ -18,10 +34,23 @@ const Profile = () => {
         </div>
 
         <div className="content-container">
+
             <div className='profile-header'>
-                <div className='profile-picture'></div>
+
+                <div className="profile-picture-container">
+                    {profileImage === null ? (
+                        <input type="file" className="profile-picture-input" onChange={handleFileChange}/>
+                    ) : (
+                        <div className='picture-selected'>
+                            <img src={profileImage} className='profile-picture' />
+                            <input type="file" className="profile-picture-input" onChange={handleFileChange}/>
+                        </div>
+                    )}
+                </div>
+                
                 <div className='profile-name'>Name Name</div>
             </div>
+
             <div className='profile-row'>
                 <div className='row-header'>About me</div>
                 <div className='row-content'>
@@ -58,11 +87,10 @@ const Profile = () => {
                     <div>test3</div>
                 </div>
             </div>
+
             <button className='message-button'>Message</button>
-                
-           
+
         </div>
-       
     </>
   );
 };

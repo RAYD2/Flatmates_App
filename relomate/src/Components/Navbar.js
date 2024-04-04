@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 
 import "../index.css";
 import "../ComponentStyles/Navbar.css";
-import bars from '../assets/bars.svg';
+import bars from '../assets/menu.png';
+
 
 import apiCall from "../apis/propertyfind";
 
@@ -62,7 +63,7 @@ function NavBar() {
           </form>
          
           <button className="menu-button" onClick={toggleMenu}>
-            <img src={bars}/>
+            <img src={bars} width={29}/>
             {
               isOpen && (
                 <div className="dropdown-container">
