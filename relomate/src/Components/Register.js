@@ -81,7 +81,7 @@ const Register = () => {
                     <input type="text" name="surname" placeholder="Surname" value={surname} onChange={surnameChange}required></input>
                 </div>
                 <div className="email-box">
-                <input type="email" name="emailaddress" placeholder="Email Address" value={emailaddress} onChange={emailChange}required></input>
+                <input type="email" name="email" placeholder="Email Address" value={emailaddress} onChange={emailChange}required></input>
                 </div>
                 <div className="password-box">
                     <input type="password" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" value={password} onChange={passwordChange} required></input>
