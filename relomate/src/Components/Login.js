@@ -7,7 +7,7 @@ const Login = () => {
             <h1 className="header">Login to Your Account</h1>
             <form action="#">
                 <div className="username-box">
-                    <input type="text" name="username" placeholder="Username" required></input>
+                    <input type="email" name="email" placeholder="Email Address" required></input>
                 </div>
                 <div className="password-box">
                     <input type="password" name="password" placeholder="Password" required></input>
