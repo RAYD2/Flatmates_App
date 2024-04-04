@@ -15,6 +15,8 @@ import NavBar from "./Components/Navbar";
 import Filters from "./Pages/filter";
 import Results from "./Pages/results";
 
+import ME from "./Pages/MatchingEmployeePage";
+
 function App() {
   return (
     <>
@@ -40,7 +42,7 @@ function App() {
 
           <Route exact path="/filter" element={<Filters />} />
           <Route exact path="/properties" element={<Results />} />
-
+          <Route exact path="/MatchingEmployee" element={<ME />} />
         </Routes>
       </Router>
     </>

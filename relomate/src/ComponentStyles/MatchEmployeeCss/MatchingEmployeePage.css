@@ -1,0 +1,80 @@
+/* test */
+html body {
+    background-color: rgb(184, 184, 184);
+  }
+
+/* main css */
+
+.ProfileContainer{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 3em;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    padding: 2em;
+    background-color: white;
+    border-radius: 1em;
+}
+
+.ProfilePicContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+
+.Profile_Picture{
+    border: 2px solid black;
+    border-radius: 50%;
+    min-width: 10vw;
+    min-height: 10vw;
+}
+
+.Profile_Person_Name{
+    font-size: 5vw;
+    font-weight: 500;  
+    text-align: center;
+}
+
+
+.Profile_Description{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.AbtMe{
+    border-bottom: 2px solid black;
+    padding: 0.25em;
+    font-size: 1.6rem;
+}
+
+.MyDescription{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+
+@media screen and (max-width: 700px) {
+    .AbtMe{
+        border-bottom: 2px solid black;
+        padding: 0.25em;
+        padding-top: 2vw;
+        font-size: 3.2vw;
+    }
+    
+    .MyDescription{
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        font-size: 3vw;
+    }
+    
+    
+}
