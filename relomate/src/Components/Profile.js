@@ -1,15 +1,16 @@
 import React, {useRef, useState} from 'react';
 
-import NavBar from './Navbar';
+import './Profile.css';
+import edit from '../assets/edit.png';
 
-import './Profile.css'
-import { Router } from 'react-router-dom';
-
-
-// Define your component
 const Profile = () => {
 
     const [profileImage, setProfileImage] = useState(null);
+
+    const [bioEdit, setBioEdit] = useState(null);
+    const [locationEdit, setLocationEdit] = useState(null);
+    const [hobbiesEdit, setHobbiesEdit] = useState(null);
+    const [contactEdit, setContactEdit] = useState(null);
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -22,12 +23,32 @@ const Profile = () => {
         reader.readAsDataURL(file);
     };
 
+    const toggleBioEdit = () => {
+        setBioEdit(!bioEdit)
+    }
+
+    const toggleLocationEdit = () => {
+        setLocationEdit(!locationEdit)
+    }
+
+
+    const toggleHobbiesEdit = () => {
+        setHobbiesEdit(!hobbiesEdit)
+    }
+
+
+    const toggleContactEdit = () => {
+        setContactEdit(!contactEdit)
+    }
+
+
+
+
     //TODO: Save selected image somewhere
     // button to EDIT
 
   return (
     <>
-        
         <div className='background-container'>
             <div className='background top'/>
             <div className='background bottom'/>
@@ -52,8 +73,12 @@ const Profile = () => {
             </div>
 
             <div className='profile-row'>
-                <div className='row-header'>About me</div>
+                <div className='row-header'>
+                    About me
+                    <button onClick={toggleBioEdit}><img src={edit} className='edit-button'></img></button>
+                </div>
                 <div className='row-content'>
+                    {bioEdit}
                     Lorem ipsum dolor sit amet, 
                     consectetur adipiscing elit.
                     Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -65,12 +90,18 @@ const Profile = () => {
             </div>
                 
             <div className='profile-row'>
-                <div className='row-header'>Location</div>
+                <div className='row-header'>
+                    Location
+                    <button><img src={edit} className='edit-button'></img></button>
+                </div>
                 <div id='location'>London, UK</div>
             </div>
 
             <div className='profile-row'>
-                <div className='row-header'>Hobbies</div>
+                <div className='row-header'>
+                    Hobbies
+                    <button><img src={edit} className='edit-button'></img></button>
+                </div>
                 <div className='row-content'>
                     <div>test1</div>
                     <div>test2</div>
@@ -80,7 +111,10 @@ const Profile = () => {
             </div>
 
             <div className='profile-row'>
-                <div className='row-header'>Contact</div>
+                <div className='row-header'>
+                    Contact
+                    <button><img src={edit} className='edit-button'></img></button>
+                </div>
                 <div className='row-content'>
                     <div>test1</div>
                     <div>test2</div>

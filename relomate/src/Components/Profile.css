@@ -70,10 +70,11 @@ body {
     height: 200px;
     min-width: 200px;
     background-position: center;
+    transition: 0.5s ease;
   }
 
 .profile-picture-container:hover {
-    background-image: url('../assets/menu.png');
+    background-image: url('../assets/edit.png');
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;
@@ -124,9 +125,25 @@ input[type="file"] {
 }
 
 .row-header{
+    display: flex;
+    align-items: center;
     border-bottom: 2px solid black;
     padding: 5px;
     font-size: 1.6rem;
+}
+
+.edit-button{
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+    transition: 0.5s ease;
+}
+
+.edit-button:hover{
+    width: 35px;
+    height: 25px; 
+    padding-left: 10px;
+    transition: 0.5s ease;
 }
 
 .row-content{
@@ -158,6 +175,17 @@ button{
     color: white;
     font-size: 1.2rem;
     font-weight: 600;
+}
 
+.message-button{
+    width: 60%;
+    padding: 20px;
+    margin: 5% auto 10% auto;
+    border-radius: 40px;
+    background: linear-gradient(to top left, #2A11C8, #411256);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
