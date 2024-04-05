@@ -1,0 +1,91 @@
+.mainLoginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: url("../assets/NYC-Bridge2.jpeg");
+  background-size: 100vw 100vh;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.login-form {
+  text-align: center;
+  font-size: 28px;
+  width: 700px;
+  background-color: transparent;
+  padding: 20px 40px;
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  color: white;
+}
+.header {
+  font-size: 48px;
+  text-align: center;
+  color: darkblue;
+}
+
+.username-box,
+.password-box {
+  width: 100%;
+  position: relative;
+  height: 50px;
+  margin: 30px 0;
+}
+
+.username-box input,
+.password-box input {
+  width: 80%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  color: snow;
+  font-size: 18px;
+}
+
+.register-link {
+  font-size: 14px;
+  text-align: right;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.register-link Link {
+  text-decoration: none;
+  color: white;
+}
+
+.register-link a:hover {
+  background-color: pink;
+}
+
+.username-box input::placeholder {
+  color: white;
+  font-weight: 700;
+}
+
+.password-box input::placeholder {
+  color: white;
+  font-weight: bold;
+}
+
+button {
+  width: 90%;
+  height: 50px;
+  background: white;
+  border: none;
+  outline: none;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+a {
+  color: red;
+  text-decoration: none;
+  font-weight: 500;
+}

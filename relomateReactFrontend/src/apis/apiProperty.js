@@ -100,9 +100,7 @@ export default function PropertyListings() {
                         </div>
                       </p>
                       <div className="details">
-                        <p href="#" className="btn btn-primary ml-3">
-                          View Listing
-                        </p>
+                        <p className="btn btn-primary ml-3">View Listing</p>
                         <p
                           className="btn btn-dark"
                           onClick={() => handleAddProperty(property)}

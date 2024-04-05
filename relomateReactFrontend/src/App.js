@@ -9,6 +9,8 @@ import Filters from "./Pages/filter";
 import Results from "./Pages/results";
 import Profile from "./Components/Profile";
 import AddPropertyInput from "./Components/addObject";
+import Login from "./Components/Login";
+import Register from "./Components/Register";
 function App() {
   return (
     <>
@@ -29,6 +31,8 @@ function App() {
           <Route exact path="/properties" element={<Results />} />
           <Route exact path="/Profile" element={<Profile />} />
           <Route exact path="/input" element={<AddPropertyInput />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/register" element={<Register />} />
         </Routes>
       </Router>
     </>
