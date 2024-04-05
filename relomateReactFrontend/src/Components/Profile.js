@@ -1,6 +1,6 @@
 import React, {useRef, useState} from 'react';
 
-import './Profile.css';
+import '../ComponentStyles/Profile.css';
 import edit from '../assets/edit.png';
 
 const Profile = () => {
@@ -72,6 +72,7 @@ const Profile = () => {
                     <button onClick={toggleBioEdit}><img src={edit} className='edit-button'></img></button>
                 </div>
                 <div className='row-content'>
+                    Note: conflicts for button in login.css and register.css, and profile.css
                     Lorem ipsum dolor sit amet, 
                     consectetur adipiscing elit.
                     Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
