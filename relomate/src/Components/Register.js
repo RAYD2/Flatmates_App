@@ -6,6 +6,7 @@ import './Register.css'
 const Register = () => {
     const supabase = createClient("https://folkgobawpbterfitlma.supabase.co", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZvbGtnb2Jhd3BidGVyZml0bG1hIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE2MjA0NTAsImV4cCI6MjAyNzE5NjQ1MH0.8gHRBa5JVkL0fSIBCRh06dAvDfJRgrKq8o0iRoD8yaY")
 
+    const [accountTypes, setAccountTypes] = useState('')
     const [firstname, setFirstName] = useState('')
     const [surname, setSurname] = useState('')
     const [emailaddress, setEmailAddress] = useState('')
@@ -18,6 +19,7 @@ const Register = () => {
             const{data, error} = await supabase
                 .from("accountinfo")
                 .insert({
+                    account_type: accountTypes,
                     firstname: firstname,
                     surname: surname,
                     emailaddress: emailaddress,
@@ -31,6 +33,10 @@ const Register = () => {
         }
     }
 
+    const aTypeChange = (e) => {
+        setAccountTypes(e.target.value)
+    }
+    
     const fNameChange = (e) => {
         setFirstName(e.target.value)
     }
@@ -51,13 +57,33 @@ const Register = () => {
         setConfirmPassword(e.target.value)
     };
 
+    async function checkIfEmailExists(email) {
+        try {
+            const {data, error} = await supabase
+            .from("accountinfo")
+            .select("emailaddress")
+            .eq("emailaddress", email)
+
+            if(error) throw error;
+            if(data.length === 0) {
+                insertData()
+            }
+            else {
+                alert("Email already in use - please provide another!")
+            }
+        }
+        catch (error) {
+            alert("Data unable to be inserted");
+        }
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         if(password !== confirmPassword) {
             alert("Passwords do not match!")
         }
         else {
-            insertData()
+            checkIfEmailExists(emailaddress)
         }
     };
     
@@ -66,12 +92,12 @@ const Register = () => {
             <h1 className="header">Register Your Account</h1>
             <form onSubmit={handleSubmit} method='POST'>
                 <div className='account-type'>
-                    <select name='types' id='types'>
+                    <select name='accountTypes' id='accTypes' onChange={aTypeChange}>
                         <option value='selectAccount'>Select Account Type</option>
-                        <option value='consultant'>FDM Consultant</option>
-                        <option value='admin'>System Admin</option>
-                        <option value='landlord'>Landlord</option>
-                        <option value='REA'>Real Estate Agent</option>
+                        <option value='FDM Consultant'>FDM Consultant</option>
+                        <option value='System Admin'>System Admin</option>
+                        <option value='Landlord'>Landlord</option>
+                        <option value='Real Estate Agent'>Real Estate Agent</option>
                     </select>
                 </div>
                 <div className="fName-box">
