@@ -1,0 +1,20 @@
+.savedSearchesSection {
+  width: 100%;
+  height: 100vh;
+  background-color: #2a11c8;
+}
+
+.savedSearchesTitle {
+  color: white;
+  text-align: center;
+  color: #fff;
+  font-family: Titillium Web, sans-serif;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.row .col {
+  padding-top: 30pt;
+}

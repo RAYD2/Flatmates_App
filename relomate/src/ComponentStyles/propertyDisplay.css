@@ -1,0 +1,22 @@
+.property-listings .card {
+  width: 1000px;
+  flex-direction: row;
+  margin: auto;
+  margin-bottom: 50pt;
+}
+
+.property-listings .card img {
+  max-width: 25%;
+}
+
+.property-listings .card .attributes img {
+  margin: auto;
+  margin-right: 20px;
+  max-width: 5%;
+}
+
+.property-listings .card .attributes {
+  font-size: large;
+  font-weight: bold;
+  text-align: left;
+}
