@@ -19,8 +19,7 @@ const Login = () => {
     
             if (error) throw error;
             if (data.length === 1) {
-                console.log(password);
-                alert("Login successful!");
+                console.log(email)
             } else {
                 alert("Email address or password are incorrect - please try again!");
             }
