@@ -3,9 +3,12 @@ import "./index.css";
 import "./App.css";
 import React from "react";
 import Homepage from "./Pages/homepage";
+import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Filters from "./Pages/filter";
 import Results from "./Pages/results";
+import Profile from "./Components/Profile";
+import AddPropertyInput from "./Components/addObject";
 function App() {
   return (
     <>
@@ -24,6 +27,8 @@ function App() {
           <Route exact path="/" element={<Homepage />} />
           <Route exact path="/filter" element={<Filters />} />
           <Route exact path="/properties" element={<Results />} />
+          <Route exact path="/Profile" element={<Profile />} />
+          <Route exact path="/input" element={<AddPropertyInput />} />
         </Routes>
       </Router>
     </>

@@ -1,5 +1,4 @@
 # 'cd relomate' if it doesnt find the package.json
-
 ![preview](https://github.com/RAYD2/Flatmates_App/blob/Profile/relomate/profile.png)
 
 ## Getting Started with Create React App

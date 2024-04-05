@@ -1,0 +1,58 @@
+.property-listings {
+  margin: auto;
+  background-color: black;
+}
+
+.property-listings .card {
+  width: 1000px;
+  flex-direction: row;
+  margin-left: 20px;
+  margin-bottom: 50pt;
+  margin-top: 100px;
+  height: 300pt;
+}
+
+.property-listings .card img {
+  max-width: 50%;
+}
+
+.property-listings .card .attributes {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: left;
+
+  font-family: monospace;
+}
+
+.property-listings .card .attributes img {
+  margin: auto;
+  margin-right: 20px;
+  max-width: 10%;
+  justify-content: baseline;
+}
+
+.mapSuggestions {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin-top: 80px;
+  margin-right: 0px;
+  background-color: blue;
+  height: 100vh;
+  border-radius: 16px;
+}
+
+.mapSuggestions img {
+  width: 400px;
+  border: 5px solid whitesmoke;
+}
+
+#mainTitle {
+  color: white;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  margin-left: 20px;
+}
+
+.details .btn {
+  margin-right: 30px;
+}
