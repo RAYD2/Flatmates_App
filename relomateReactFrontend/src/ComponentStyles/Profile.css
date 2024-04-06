@@ -12,12 +12,12 @@ body {
 
 .top{
     background: #191919;
-    height: 50vh;
+    height: 45%;
 }
 
 .bottom{
     background: #2A11C8;
-    height: 50vh;
+    height: 100%;
 }
 
 
@@ -35,7 +35,7 @@ body {
     border-radius: 40px;
     background: #E9EFF3;
 
-    box-shadow: 20px 20px 50px rgba(0, 0, 0, 1);
+    box-shadow: 20px 40px 25px rgba(0, 0, 0, 1);
 }
 
 .content-container::-webkit-scrollbar {
@@ -132,14 +132,15 @@ input[type="file"] {
     font-size: 1.6rem;
 }
 
-.edit-button{
+.edit-icon{
     width: 25px;
     height: 25px;
     margin-left: 10px;
+    margin-bottom: 6px;
     transition: 0.5s ease;
 }
 
-.edit-button:hover{
+.edit-icon:hover{
     width: 35px;
     height: 25px; 
     padding-left: 10px;
@@ -149,16 +150,18 @@ input[type="file"] {
 .row-content{
     display: flex;
     justify-content: space-around;
+    align-items: center;
     padding: 10px;
     font-size: 1rem;
 }
 
-#location{
+#location,
+#about-me{
     padding: 10px;
     font-size: 1rem;
 }
 
-button{
+button.edit-button{
     padding: 0;
     margin: 0;
     border: none;
@@ -175,4 +178,18 @@ button{
     color: white;
     font-size: 1.2rem;
     font-weight: 600;
+}
+
+.edit-mode{
+    margin: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    background-color: lightgrey;
+}
+
+.plus-minus{
+    border: none;
+    margin-left: 20px;
+    font-weight: 1000;
 }

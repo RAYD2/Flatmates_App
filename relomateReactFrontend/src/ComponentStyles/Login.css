@@ -72,7 +72,7 @@
   font-weight: bold;
 }
 
-button {
+button.login {
   width: 90%;
   height: 50px;
   background: white;

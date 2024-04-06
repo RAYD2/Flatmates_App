@@ -77,7 +77,7 @@ select,
   font-weight: 700;
 }
 
-button {
+button.login {
   width: 90%;
   height: 50px;
   background: white;

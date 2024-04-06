@@ -69,7 +69,7 @@ const Login = () => {
             ></input>
           </div>
           <div className="login-button">
-            <button type="submit">Login</button>
+            <button className="login" type="submit">Login</button>
           </div>
           <div className="register-link">
             Haven't got an account yet?<Link to="/Register">Register</Link>

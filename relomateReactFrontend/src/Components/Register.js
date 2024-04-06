@@ -132,7 +132,7 @@ const Register = () => {
             ></input>
           </div>
           <div className="login-button">
-            <button type="submit">Register Account</button>
+            <button className="login" type="submit">Register Account</button>
           </div>
           <div className="register-link">
             Already got an account?<Link to="/">Login</Link>
