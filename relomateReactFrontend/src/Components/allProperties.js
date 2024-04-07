@@ -1,3 +1,4 @@
+// Properties.js
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../index.css";
@@ -21,6 +22,21 @@ export default function Properties() {
   const handleMaxPriceChange = (event) => {
     setMaxPrice(event.target.value);
     localStorage.setItem("maxPrice", event.target.value);
+  };
+
+  const handleSearch = () => {
+    const search = [
+      localStorage.getItem("selectedGeoLabel"),
+      localStorage.getItem("maxPrice"),
+      localStorage.getItem("radiusSetting"),
+      localStorage.getItem("propertyTypeSetting"),
+    ];
+    let recentSearches = JSON.parse(localStorage.getItem("recentSearches"));
+    if (!recentSearches) {
+      recentSearches = [];
+    }
+    recentSearches.push(search);
+    localStorage.setItem("recentSearches", JSON.stringify(recentSearches));
   };
 
   return (
@@ -94,8 +110,8 @@ export default function Properties() {
         <option value="less100">less than 100</option>
       </select>
 
-      <button id="additional">
-        <Link to="/properties">Additional Filters</Link>
+      <button id="additional" onClick={handleSearch}>
+        <Link to="/properties">Search</Link>
       </button>
     </div>
   );

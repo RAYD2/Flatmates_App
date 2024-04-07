@@ -1,3 +1,4 @@
+// PropertyResult.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../ComponentStyles/propertyResults.css";
@@ -5,29 +6,41 @@ import "../ComponentStyles/propertyResults.css";
 export default function PropertyResult() {
   const [responseData, setResponseData] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [loading, setLoading] = useState(true); // Added loading state
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const locationVal = localStorage.getItem("currentSearch");
-        const options = {
-          method: "GET",
-          url: "https://zoopla.p.rapidapi.com/v2/auto-complete",
-          params: {
-            locationPrefix: locationVal,
-          },
-          headers: {
-            "X-RapidAPI-Key":
-              "1c2366b0bemsh25489af249db09fp15261cjsnaaf9d7761e23",
-            "X-RapidAPI-Host": "zoopla.p.rapidapi.com",
-          },
-        };
 
-        const response = await axios.request(options);
-        setResponseData(response.data);
-        console.log(response.data);
+        // Check if data already exists in localStorage
+        const cachedData = localStorage.getItem("cachedData");
+        if (cachedData) {
+          setResponseData(JSON.parse(cachedData));
+          setLoading(false);
+        } else {
+          const options = {
+            method: "GET",
+            url: "https://zoopla.p.rapidapi.com/v2/auto-complete",
+            params: {
+              locationPrefix: locationVal,
+            },
+            headers: {
+              "X-RapidAPI-Key":
+                "104aa68165msh8f058d6de7ff6e0p11141ajsn14a8f255e476",
+              "X-RapidAPI-Host": "zoopla.p.rapidapi.com",
+            },
+          };
+
+          const response = await axios.request(options);
+          setResponseData(response.data);
+          setLoading(false);
+          // Cache the response
+          localStorage.setItem("cachedData", JSON.stringify(response.data));
+        }
       } catch (error) {
         console.error(error);
+        setLoading(false);
       }
     };
 
@@ -38,15 +51,19 @@ export default function PropertyResult() {
     const selectedIndex = event.target.selectedIndex;
     const selectedGeo = responseData.data.geoSuggestion[selectedIndex];
 
-    localStorage.setItem("selectedGeoIdentifier", selectedGeo.geoIdentifier);
-    localStorage.setItem("selectedGeoLabel", selectedGeo.geoLabel);
+    if (selectedGeo) {
+      localStorage.setItem("selectedGeoIdentifier", selectedGeo.geoIdentifier);
+      localStorage.setItem("selectedGeoLabel", selectedGeo.geoLabel);
 
-    setSelectedOption(selectedGeo);
+      setSelectedOption(selectedGeo);
+    }
   };
 
   return (
     <div className="resultsSuggestion">
-      {responseData && responseData.data && responseData.data.geoSuggestion && (
+      {loading ? (
+        <p>Loading...</p>
+      ) : (
         <div>
           <h2>Suggestions:</h2>
           <select

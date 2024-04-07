@@ -18,12 +18,12 @@ function SavedProperties() {
   }, []);
 
   return (
-    <>
+    <div className="savedPropertiesContainer">
       <div className="container" style={{ overflowX: "scroll" }}>
         <div className="row flex-nowrap" style={{ width: "auto" }}>
           {savedListings.map((savedListing) => (
             <div className="col" key={savedListing.id}>
-              <div className="card" style={{ width: `18rem` }}>
+              <div className="card" style={{ width: `18rem`, gap: `5px` }}>
                 <img
                   src={savedListing.mainImage}
                   className="card-img-top"
@@ -37,7 +37,7 @@ function SavedProperties() {
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }
 

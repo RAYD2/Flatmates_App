@@ -59,7 +59,7 @@ function NavBar() {
               Messages
             </Link>
             <Link
-              to="/Login"
+              to="/login"
               className={
                 location.pathname === "/Login" ? "nav-selected" : "nav-default"
               }

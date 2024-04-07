@@ -8,6 +8,9 @@ export default function PropertyListings() {
   const [responseData, setResponseData] = useState(null);
   const [selectedProperty, setSelectedProperty] = useState(null);
   const [addProperty, setAddProperty] = useState(false);
+  const [responseDataSecondary, setResponseDataSecondary] = useState(null);
+  const [responseDataThirdly, setResponseDataThirdly] = useState(null);
+
   const geoLabel = localStorage.getItem("selectedGeoLabel");
   const geoIdentifier = localStorage.getItem("selectedGeoIdentifier");
   const priceMax = localStorage.getItem("maxPrice");
@@ -32,7 +35,7 @@ export default function PropertyListings() {
         },
         headers: {
           "X-RapidAPI-Key":
-            "1c2366b0bemsh25489af249db09fp15261cjsnaaf9d7761e23",
+            "104aa68165msh8f058d6de7ff6e0p11141ajsn14a8f255e476",
           "X-RapidAPI-Host": "zoopla.p.rapidapi.com",
         },
       };
@@ -48,10 +51,59 @@ export default function PropertyListings() {
     setAddProperty(true);
   };
 
+  const handleLookProperty = (property) => {
+    findBroadBand(property); // Pass the property object to findBroadBand
+  };
+
+  const findBroadBand = async (property) => {
+    try {
+      const options = {
+        method: "GET",
+        url: "https://zoopla.p.rapidapi.com/properties/get-broadband",
+        params: {
+          listing_id: property.listingId,
+        },
+        headers: {
+          "X-RapidAPI-Key":
+            "104aa68165msh8f058d6de7ff6e0p11141ajsn14a8f255e476",
+          "X-RapidAPI-Host": "zoopla.p.rapidapi.com",
+        },
+      };
+      const response = await axios.request(options);
+      setResponseDataSecondary(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const findSpecifics = async (property) => {
+    try {
+      const options = {
+        method: "GET",
+        url: "https://zoopla.p.rapidapi.com/properties/v2/detail",
+        params: {
+          listing_id: property.listingId,
+        },
+        headers: {
+          "X-RapidAPI-Key":
+            "104aa68165msh8f058d6de7ff6e0p11141ajsn14a8f255e476",
+          "X-RapidAPI-Host": "zoopla.p.rapidapi.com",
+        },
+      };
+      const response = await axios.request(options);
+      setResponseDataThirdly(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleSpecifics = (property) => {
+    findSpecifics(property); // Pass the property object to findBroadBand
+  };
+
   useEffect(() => {
     fetchData();
-  }, []);
-
+  }, [geoLabel, geoIdentifier, priceMax, radius, propertyType]);
   return (
     <>
       <div className="property-listings">
@@ -77,6 +129,10 @@ export default function PropertyListings() {
                       className="card-img-top"
                       src={property.imageUris[0]}
                       alt="Property Image"
+                      onClick={() => {
+                        handleLookProperty(property);
+                        handleSpecifics(property);
+                      }}
                     />
                     <div className="card-body">
                       <h5 className="card-title">{property.title}</h5>
@@ -119,7 +175,10 @@ export default function PropertyListings() {
           ))}
       </div>
       <div>
-        <SideDetails data={responseData} />
+        <SideDetails
+          data={responseDataSecondary}
+          dataSecond={responseDataThirdly}
+        />
       </div>
     </>
   );
