@@ -41,42 +41,41 @@ const Login = () => {
     fetchData(emailaddress, password);
   };
   return (
-    <>
-      <NavBar />
-      <div className="mainLoginContainer">
-        <div className="login-form">
-          <h1 className="header">Login to Your Account</h1>
-          <form onSubmit={handleSubmit} method="POST">
-            <div className="username-box">
-              <input
-                type="email"
-                name="emailaddress"
-                placeholder="Email Address"
-                value={emailaddress}
-                onChange={emailChange}
-                required
-              ></input>
-            </div>
-            <div className="password-box">
-              <input
-                type="password"
-                name="password"
-                placeholder="Password"
-                value={password}
-                onChange={passwordChange}
-                required
-              ></input>
-            </div>
-            <div className="login-button">
-              <button type="submit">Login</button>
-            </div>
-            <div className="register-link">
-              Haven't got an account yet?<Link to="/Register">Register</Link>
-            </div>
-          </form>
-        </div>
+    <div className="mainLoginContainer">
+      <div className="login-form">
+        <h1 className="header">Login to Your Account</h1>
+        <form onSubmit={handleSubmit} method="POST">
+          <div className="username-box">
+            <input
+              type="email"
+              name="emailaddress"
+              placeholder="Email Address"
+              value={emailaddress}
+              onChange={emailChange}
+              required
+            ></input>
+          </div>
+          <div className="password-box">
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              value={password}
+              onChange={passwordChange}
+              required
+            ></input>
+          </div>
+          <div className="login-button">
+            <button className="login" type="submit">
+              Login
+            </button>
+          </div>
+          <div className="register-link">
+            Haven't got an account yet?<Link to="/Register">Register</Link>
+          </div>
+        </form>
       </div>
-    </>
+    </div>
   );
 };
 
