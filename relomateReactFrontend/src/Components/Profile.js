@@ -77,16 +77,18 @@ const Profile = () => {
 
         setUserData(accountInfo, profileDetails)
 
+    }
+    
+    const fetchImage = async () => {
+
         const imageUrl = await supabase
         .storage
         .from('profilePicture')
         .getPublicUrl(filename)
 
         setProfileUrl(imageUrl.data.publicUrl)
-        console.log("New profile Url", profileUrl)
-        
     }
-        
+
     // Set state variables
     const setUserData = (accountInfo, profileDetails) => {
         var user = profileDetails.data[0];
@@ -104,8 +106,6 @@ const Profile = () => {
     // Update the database
     const updateDatabase = async () => {
 
-        console.log("New database filename",filename)
-        
         await supabase
         .from('profileDetails')
         .update(
@@ -117,7 +117,7 @@ const Profile = () => {
         )
         .eq('id', id)
 
-        
+        uploadImage()
     }
 
     const uploadImage = async () => {
@@ -141,8 +141,13 @@ const Profile = () => {
     }, []);
 
     useEffect(() => {
-        console.log('filename ', filename);
+        console.log(filename)
+        fetchImage()
     }, [filename]);
+
+    useEffect(() => {
+        console.log(profileUrl)
+    }, [profileUrl]);
 
     useEffect(() => {
         setUserInput(currentContent); // Update userInput whenever currentContent changes
@@ -226,10 +231,10 @@ const Profile = () => {
                         )
                     ) : (
                         publicProfile ? ( // Image present and in public mode: display image only
-                            <img src={profileImage} className='profile-picture' />
+                            <img src={profileUrl} className='profile-picture' />
                         ) : ( // Image present and not in public mode: display image and profileFile selector overlay
                         <div className='picture-selected'>
-                            <img src={profileImage} className='profile-picture' />
+                            <img src={profileUrl} className='profile-picture' />
                             <input type="file" className="profile-picture-input" onChange={selectProfileImage}/>
                         </div>
                         )
