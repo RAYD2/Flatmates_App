@@ -10,49 +10,26 @@ body {
     height: 100vh;
 }
 
-.top{
-    background: #191919;
-    height: 45%;
-}
-
-.bottom{
-    background: #2A11C8;
-    height: 100%;
-}
-
-
 .content-container{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     position: fixed;
-    width: 80%;
-    height: 80%;
-    top: 10%;
-    left: 10%;
+    width: 90%;
+    height: 90%;
+    bottom: 5%;
+    left: 5%;
     overflow: auto;
 
     border-radius: 40px;
     background: #E9EFF3;
 
-    box-shadow: 20px 40px 25px rgba(0, 0, 0, 1);
+    box-shadow: 20px 40px 25px rgba(0, 0, 0, 0.6);
 }
 
 .content-container::-webkit-scrollbar {
     display: none;
   }
-
-.profile-wrapper{
-    display: flex;
-    flex-direction: column;
-}
-
-.profile-details{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    max-width: 500px;
-}
 
 .profile-header{
     display: flex;
@@ -71,9 +48,23 @@ body {
     min-width: 200px;
     background-position: center;
     transition: 0.5s ease;
-  }
+    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.4);
+}
 
-.profile-picture-container:hover {
+.profile-picture-editable {
+    position: relative;
+    display: inline-block;
+    border: 2px solid black;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    min-width: 200px;
+    background-position: center;
+    transition: 0.5s ease;
+    box-shadow: 7px 7px 10px rgba(0, 0, 0, 0.4);
+}
+
+.profile-picture-editable:hover {
     background-image: url('../assets/edit.png');
     background-size: 50%;
     background-repeat: no-repeat;
@@ -111,10 +102,33 @@ input[type="file"] {
 }
 
 .profile-name{
+    display: flex;
+    flex-direction: column;
     font-size: 3rem;
     font-weight: 500;
-    padding-left: 5%;
+    padding-left: 20px;
 }
+
+.handle{
+    font-size: 1rem;
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 300;
+    padding-left: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background: none;
+}
+
+.handle:hover{
+    font-size: 1rem;
+    color: white;
+    font-weight: 300;
+    padding-left: 5px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background: #999999;
+}
+
 
 .profile-row{
     display: flex;
@@ -132,6 +146,14 @@ input[type="file"] {
     font-size: 1.6rem;
 }
 
+button.edit-button{
+    padding: 0;
+    margin: 0;
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+
 .edit-icon{
     width: 25px;
     height: 25px;
@@ -147,40 +169,7 @@ input[type="file"] {
     transition: 0.5s ease;
 }
 
-.row-content{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 10px;
-    font-size: 1rem;
-}
-
-#location,
-#about-me{
-    padding: 10px;
-    font-size: 1rem;
-}
-
-button.edit-button{
-    padding: 0;
-    margin: 0;
-    border: none;
-    cursor: pointer;
-}
-
-.message-button{
-    width: 60%;
-    padding: 20px;
-    margin: 5% auto 10% auto;
-    border-radius: 40px;
-    background: linear-gradient(to top left, #2A11C8, #411256);
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);
-    color: white;
-    font-size: 1.2rem;
-    font-weight: 600;
-}
-
-.edit-mode{
+.edit-input{
     margin: 5px;
     padding: 5px;
     border: none;
@@ -192,4 +181,58 @@ button.edit-button{
     border: none;
     margin-left: 20px;
     font-weight: 1000;
+    background: none;
+    transition: 0.3s ease;
+    padding-bottom: 5px;
 }
+
+.plus-minus:hover{
+    border: none;
+    margin-left: 20px;
+    padding-bottom: 5px;
+    scale: 2;
+    font-weight: 1000;
+    transition: 0.3s ease;
+}
+
+#location,
+#about-me{
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.row-content{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.bottom-button{
+    width: 60%;
+    padding: 20px;
+    margin: 5% auto 10% auto;
+    border-radius: 40px;
+    background: linear-gradient(to top left, #2A11C8, #411256);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: 0.5s ease;
+}
+
+.bottom-button:hover{
+    width: 60%;
+    padding: 20px;
+    margin: 5% auto 10% auto;
+    border-radius: 40px;
+    background: linear-gradient(to bottom right, #2A11C8, #411256);
+    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: background 0.5s ease;
+}
+
+
