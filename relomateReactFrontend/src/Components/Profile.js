@@ -24,10 +24,10 @@ const Profile = () => {
     const [filename, setFilename] = useState('')
 
     const [name, setName] = useState('');
-    const [bio, setBio] = useState('Edit me');
-    const [location, setLocation] = useState('Location');
-    const [hobbies, setHobbies] = useState(['1','2','3','4']);
-    const [contacts, setContacts] = useState(['1','2','3']);
+    const [bio, setBio] = useState('Loading...');
+    const [location, setLocation] = useState('Loading...');
+    const [hobbies, setHobbies] = useState(['Loading...']);
+    const [contacts, setContacts] = useState(['Loading...']);
 
     // Used to enable editing existing content instead of erasing for each edit
     const [currentContent, setCurrentContent] = useState('');
@@ -64,10 +64,10 @@ const Profile = () => {
                     .insert([{
                         // Populate with default values
                         id,
-                        bio: "Edit me",
-                        location: "Location",
-                        hobbies: ["Sport 1","Sport 2"],
-                        contacts: ["Contact 1","Contact 2","Contact 3"]
+                        bio: "No bio recorded",
+                        location: "No location recorded",
+                        hobbies: ["No hobbies recorded"],
+                        contacts: ["No contacts recorded"]
                     }]);
 
                 } else {
