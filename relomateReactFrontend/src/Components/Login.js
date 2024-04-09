@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 import "../ComponentStyles/Login.css";
+import "../App.css";
+import NavBar from "./Navbar";
 const Login = () => {
   const supabase = createClient(
     "https://folkgobawpbterfitlma.supabase.co",
@@ -44,9 +46,11 @@ const Login = () => {
     fetchData(emailaddress, password);
   };
   return (
+    <>
+    <NavBar></NavBar>
     <div className="mainLoginContainer">
       <div className="login-form">
-        <h1 className="header">Login to Your Account</h1>
+        <h1 className="header">Login</h1>
         <form onSubmit={handleSubmit} method="POST">
           <div className="username-box">
             <input
@@ -77,6 +81,7 @@ const Login = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 

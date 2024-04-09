@@ -80,7 +80,7 @@ function NavBar() {
             />
             <Link to="/filter">
               <button
-                className="btn btn-outline-primary"
+                className="button_search"
                 onClick={() => {
                   setDefaultSearch("Barnet");
                   localStorage.setItem(

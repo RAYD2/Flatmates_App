@@ -1,3 +1,156 @@
 html body {
-  background-color: rgba(0, 0, 0, 1);
+  background-color: rgb(0, 0, 0);
+  overflow-y: scroll;
+
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#root{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas: 
+      "nav nav nav"
+      "main main main"
+      "footer footer footer";
+  min-height: 100vh;
+  
+
+}
+
+footer{
+  grid-area: footer;
+}
+
+#saved_title{
+  position: relative;
+  top: 90%;
+  left: 29%;
+  font-weight: bold;
+  color:  rgba(0, 0, 0, 0.995);
+  
+  
+}
+
+.nav-container {
+  grid-area: nav;
+}
+
+
+
+#message{
+  grid-area: main;
+  position: relative;
+  top: 30%;
+  left: 10%;
+ 
+}
+#desc{
+  position: relative;
+  top: 55%;
+  left: 10%;
+  grid-area: main;
+  color: rgba(245, 245, 245, 0.671);
+}
+#message > h1{
+  font-size: 10rem;
+}
+.container {
+  grid-area: main;
+  justify-content: center;
+  display: flex;
+  position: relative;
+  top: 5%;
+}
+
+.savedSearchesSection {
+  grid-area: main; 
+ 
+}
+.content-container{
+  grid-area: main;
+}
+
+.mainLoginContainer{
+  grid-area: main;
+}
+
+
+.mainRegisterBody{
+  grid-area: main;
+}
+
+.searchFilterFields{
+  grid-area: main;
+  justify-content: center;
+}
+
+#Radius, #PropertyType, #Volume {
+  width: 100%;
+  text-align: center;
+  border-radius: 1rem;
+}
+#Price{
+  width: 250%;
+  position: relative;
+  right: 6rem;
+  text-align: center;
+  border-radius: 1rem;
+}
+
+
+#message{
+  color:  rgb(202, 248, 128);
+}
+
+#box-green{
+  background-color:  rgb(202, 248, 128);
+  grid-area: main;
+  position: relative;
+  top: 100%;
+  margin-bottom: -20rem ;
+
+}
+
+#box-black{
+  background-color:  rgb(0, 0, 0);
+  grid-area: main;
+ position: relative;
+}
+
+.col > .card{
+  background-color: black;
+  color: whitesmoke;
+}
+
+.col >.card > .card-body > .button{
+  background-color:  rgb(202, 248, 128);
+  color: black;
+  padding: 0.5rem;
+  border-radius: 1rem;
+
+}
+
+a:link {
+  text-decoration: none;
+}
+
+
+.col >.card > .card-header{
+  color:  rgb(202, 248, 128);
+}
+
+.nav-right > .d-flex > #searchButton{
+  background-color: rgba(83, 83, 83, 0.247);
+  border-radius: 2rem;
+}
+.button_search{
+  background-color: black;
+  border-radius: 2rem;
+  color:  rgb(202, 248, 128);
+  border-style: none;
+  padding: 0.5rem;
 }

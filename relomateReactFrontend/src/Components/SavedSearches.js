@@ -17,7 +17,7 @@ function SavedSearches() {
                 <div className="card-body">
                   <h5 className="card-title">Oldham</h5>
                   <p className="card-text">x bedroom with x baths and stuff</p>
-                  <a href="#" className="btn btn-primary">
+                  <a href="#" className="button">
                     Go somewhere
                   </a>
                 </div>
@@ -30,7 +30,7 @@ function SavedSearches() {
                 <div className="card-body">
                   <h5 className="card-title">Barnet</h5>
                   <p className="card-text">x bedroom with x baths and stuff</p>
-                  <a href="#" className="btn btn-primary">
+                  <a href="#" className="button">
                     Go somewhere
                   </a>
                 </div>
@@ -43,7 +43,7 @@ function SavedSearches() {
                 <div className="card-body">
                   <h5 className="card-title">Hackney</h5>
                   <p className="card-text">x bedroom with x baths and stuff</p>
-                  <a href="#" className="btn btn-primary">
+                  <a href="#" className="button">
                     Go somewhere
                   </a>
                 </div>
@@ -56,7 +56,7 @@ function SavedSearches() {
                 <div className="card-body">
                   <h5 className="card-title">Peckham</h5>
                   <p className="card-text">x bedroom with x baths and stuff</p>
-                  <a href="#" className="btn btn-primary">
+                  <a href="#" className="button">
                     Go somewhere
                   </a>
                 </div>

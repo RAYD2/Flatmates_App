@@ -2,6 +2,7 @@ import logo from "./logo.svg";
 import "./index.css";
 import "./App.css";
 import React from "react";
+import NavBar from "./Components/Navbar";
 import Homepage from "./Pages/homepage";
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

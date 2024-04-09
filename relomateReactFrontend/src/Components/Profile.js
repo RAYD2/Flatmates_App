@@ -2,6 +2,7 @@ import React, {useRef, useState, useEffect} from 'react';
 
 import '../ComponentStyles/Profile.css';
 import edit from '../assets/edit.png';
+import NavBar from "../Components/Navbar";
 
 const Profile = () => {
 
@@ -107,7 +108,7 @@ const Profile = () => {
 
   return (
     <>
-        
+        <NavBar />
         <div className='background-container'>
             <div className='background top'/>
             <div className='background bottom'/>
@@ -132,7 +133,7 @@ const Profile = () => {
                     )}
                 </div>
                 
-                <div className='profile-name'>Name Name</div>
+                <div className='profile-name'>Jane Smith</div>
             </div>
 
             {/* New section below header */}
@@ -155,6 +156,7 @@ const Profile = () => {
                 ) : (
                     <input
                         className='edit-mode'
+                        id='about'
                         type='text'
                         value={userInput}
                         onChange={handleUserInput}/>

@@ -3,6 +3,7 @@ body {
     padding: 0;
     height: 100%;
     overflow: hidden;
+    
 }
 
 .background-container{
@@ -10,18 +11,18 @@ body {
     height: 100vh;
 }
 
-.top{
+/* .top{
     background: #191919;
     height: 45%;
-}
+} */
 
-.bottom{
+/* .bottom{
     background: #2A11C8;
     height: 100%;
-}
+} */
 
 
-.content-container{
+/* .content-container{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
@@ -36,8 +37,22 @@ body {
     background: #E9EFF3;
 
     box-shadow: 20px 40px 25px rgba(0, 0, 0, 1);
+} */
+.content-container{
+    position: relative;
+    display: flex;
+    top: 10%;
+    background-color: rgb(29, 29, 29);
+    border-radius: 3rem ;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+    margin: auto;
+    margin-left: 30%;
+    margin-right: 30%;
+    height: 130%;
+   
+  
 }
-
 .content-container::-webkit-scrollbar {
     display: none;
   }
@@ -51,10 +66,11 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    max-width: 500px;
+    max-width: 250px;
 }
 
 .profile-header{
+
     display: flex;
     justify-content: center;
     align-items: center;
@@ -64,10 +80,10 @@ body {
 .profile-picture-container {
     position: relative;
     display: inline-block;
-    border: 2px solid black;
+    border: 2px solid rgb(255, 255, 255);
     border-radius: 50%;
-    width: 200px;
-    height: 200px;
+    width: 90px;
+    height:200px;
     min-width: 200px;
     background-position: center;
     transition: 0.5s ease;
@@ -78,7 +94,7 @@ body {
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0.385);
     transition: 0.3s ease;
 }
 
@@ -117,19 +133,26 @@ input[type="file"] {
 }
 
 .profile-row{
+    position: relative;
+    top: 5rem;
     display: flex;
     flex-direction: column;
-    width: 90%;
-    margin-left: auto;
+    align-items: flex-start;
+    width: 40%;
+    margin-left: 10%;
     margin-right: auto;
 }
 
 .row-header{
     display: flex;
     align-items: center;
-    border-bottom: 2px solid black;
+    border-radius: 2rem;
+    border-bottom: 2px solid rgb(38, 38, 38);
+    width: 10rem;
     padding: 5px;
     font-size: 1.6rem;
+    background-color: rgb(52, 52, 52);
+    color: rgba(255, 251, 251, 0.767);
 }
 
 .edit-icon{
@@ -160,36 +183,44 @@ input[type="file"] {
     padding: 10px;
     font-size: 1rem;
 }
+#about{
+   padding-bottom: 10rem;
+}
 
 button.edit-button{
     padding: 0;
     margin: 0;
     border: none;
     cursor: pointer;
+    background-color: rgb(52, 52, 52);
 }
 
 .message-button{
-    width: 60%;
-    padding: 20px;
-    margin: 5% auto 10% auto;
+    width: 20%;
+    padding: 5px;
     border-radius: 40px;
-    background: linear-gradient(to top left, #2A11C8, #411256);
-    box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);
+    background: linear-gradient(to top left, #73c811, #b1dd10);
     color: white;
     font-size: 1.2rem;
     font-weight: 600;
+    position: relative;
+    top: 7rem;
+    left: 40%;
 }
 
 .edit-mode{
-    margin: 5px;
-    padding: 5px;
+    margin: 10px;
+    padding: 6px;
+    padding-right: 15rem;
     border: none;
     border-radius: 10px;
-    background-color: lightgrey;
+    background-color: rgb(69, 69, 69);
 }
 
 .plus-minus{
-    border: none;
-    margin-left: 20px;
+    border-radius: 1rem;
+    border-color:  transparent;
+    margin-left: 40px;
     font-weight: 1000;
+    background-color: rgb(52, 52, 52);
 }

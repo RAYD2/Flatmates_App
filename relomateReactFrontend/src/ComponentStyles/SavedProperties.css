@@ -1,4 +1,22 @@
 .container {
   width: 100%;
   margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  grid-area: main;
+  position: relative;
+  top: 110%;
+  color: whitesmoke;
+  
+}
+
+.card-body{
+  background-color: black;
+}
+.container > .card{
+  border-radius: 2rem;
+
+}
+.card-text{
+  color: whitesmoke;
 }

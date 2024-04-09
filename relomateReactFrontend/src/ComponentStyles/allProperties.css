@@ -17,7 +17,7 @@
 }
 
 .searchFilterFields {
-  background-color: #e9eff3;
+  background-color: #ffffff;
   color: black;
   display: grid;
   gap: 5px;
@@ -25,7 +25,7 @@
   max-height: 85%;
   margin: auto;
   border-radius: 16px;
-  width: 85%;
+  width: 35%;
 }
 
 .searchFilterFields select {
@@ -58,7 +58,7 @@
   flex-shrink: 0;
   border-radius: 6px;
   border: 1px solid #000;
-  background: #2a11c8;
+  background: #000000;
   margin: auto;
 
   color: #fffafa;
@@ -91,8 +91,10 @@
 #searchListing {
   width: 900px;
   margin-top: 10px;
-  background-color: #2a11c8;
+  background-color: #2200ff;
   border: 3px solid white;
   color: white;
   border-radius: 5px;
 }
+
+

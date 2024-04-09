@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { createClient } from "@supabase/supabase-js";
 import "../ComponentStyles/Register.css";
+import NavBar from "../Components/Navbar";
 
 const Register = () => {
   const supabase = createClient(
@@ -64,6 +65,8 @@ const Register = () => {
   };
 
   return (
+    <>
+    <NavBar></NavBar>
     <div className="mainRegisterBody">
       <div className="Register-form">
         <h1 className="header">Register Your Account</h1>
@@ -140,6 +143,7 @@ const Register = () => {
         </form>
       </div>
     </div>
+    </>
   );
 };
 export default Register;
