@@ -12,7 +12,7 @@ const Login = () => {
     try {
       const { data, error } = await supabase
         .from("accountinfo")
-        .select("emailaddress", "password")
+        .select("id","emailaddress", "password")
         .eq("emailaddress", email)
         .eq("password", pass);
 
@@ -20,6 +20,7 @@ const Login = () => {
       if (data.length === 1) {
         console.log(password);
         alert("Login successful!");
+        localStorage.setItem('loggedInUserId', data[0].id);
       } else {
         alert("Email address or password are incorrect - please try again!");
       }

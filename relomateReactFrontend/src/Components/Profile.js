@@ -7,7 +7,8 @@ import edit from '../assets/edit.png';
 const Profile = () => {
 
     // TODO: Update id dynamically to reflect logged in user
-    const id = 32;
+    const loggedId = localStorage.getItem('loggedInUserId');
+    console.log(loggedId)
 
     // Edit mode of each section
     const [publicProfile, setPublic] = useState(false);
@@ -40,6 +41,42 @@ const Profile = () => {
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
+    const createProfile = async () => {
+        const { data: accountInfoData, error } = await supabase
+        .from('accountinfo')
+        .select('*');
+
+        for (const accountInfoRow of accountInfoData) {
+            const { id } = accountInfoRow; // Extract the ID from the accountinfo row
+    
+            try {
+                // Check if a profile already exists for this account
+                const { data: existingProfiles, error: profileError } = await supabase
+                .from('profileDetails')
+                .select('*')
+                .eq('id', id);
+
+                if (existingProfiles.length === 0) {
+                // Insert a new row into the profileDetails table with the same ID
+                const { data: insertedData, error: insertError } = await supabase
+                    .from('profileDetails')
+                    .insert([{
+                        id,
+                        bio: "Edit me",
+                        location: "Location",
+                        hobbies: ["Sport 1","Sport 2"],
+                        contacts: ["Contact 1","Contact 2","Contact 3"]
+                    }]); // Insert a new row with the same ID
+
+                } else {
+                    console.log(`Profile already exists for account ID ${id}`);
+                }
+            } catch (error) {
+                console.error('Error inserting data:', error.message);
+            }
+        }
+    }
+
     // Handle profileFile selection
     const selectProfileImage = async (event) => {
         const profileFile = event.target.files[0]; // Assign first profileFile from array to variable
@@ -67,12 +104,12 @@ const Profile = () => {
         const accountInfo = await supabase
         .from('accountinfo')
         .select('firstname, surname, emailaddress')
-        .eq('id', id)
+        .eq('id', loggedId)
 
         const profileDetails = await supabase
         .from('profileDetails')
         .select('bio, location, hobbies, contacts, fileName')
-        .eq('id', id)
+        .eq('id', loggedId)
 
         setUserData(accountInfo, profileDetails)
     }
@@ -115,7 +152,7 @@ const Profile = () => {
             contacts: contacts,
             fileName: profileFile.name}
         )
-        .eq('id', id)
+        .eq('id', loggedId)
 
         uploadImage()
     }
@@ -135,8 +172,12 @@ const Profile = () => {
 
     // Run once when page loaded
     useEffect(() => {
-        fetchUserData();
-        fetchUserData().then(fetchImage());
+        createProfile()
+        .then(() => {
+            fetchUserData();
+            fetchImage();
+        })
+
     }, []);
 
     useEffect(() => {
