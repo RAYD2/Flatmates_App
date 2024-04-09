@@ -26,7 +26,6 @@ const Register = () => {
       if (error) throw error;
       history.push("/");
     } catch (error) {
-      alert("Data unable to be inserted");
     }
   }
 
