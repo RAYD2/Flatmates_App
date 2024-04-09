@@ -41,14 +41,13 @@ const Profile = () => {
     ///////////////////////////////////////////////////////////////////////////////////////////
 
     // Handle profileFile selection
-    const selectProfileImage = (event) => {
+    const selectProfileImage = async (event) => {
         const profileFile = event.target.files[0]; // Assign first profileFile from array to variable
         const reader = new FileReader(); // Object to read profileFile content
 
         reader.onload = function(e) { // Once profileFile is loaded...
             setProfileImage(e.target.result); // Set state variable to selected image
             setProfileFile(profileFile)
-            setFilename(profileFile.name)
         };
 
         try{
@@ -76,17 +75,18 @@ const Profile = () => {
         .eq('id', id)
 
         setUserData(accountInfo, profileDetails)
-
     }
     
     const fetchImage = async () => {
+
+        console.log("Fetching", filename)
 
         const imageUrl = await supabase
         .storage
         .from('profilePicture')
         .getPublicUrl(filename)
 
-        setProfileUrl(imageUrl.data.publicUrl)
+        setProfileImage(imageUrl.data.publicUrl)
     }
 
     // Set state variables
@@ -113,7 +113,7 @@ const Profile = () => {
             location: location,
             hobbies: hobbies,
             contacts: contacts,
-            fileName: filename}
+            fileName: profileFile.name}
         )
         .eq('id', id)
 
@@ -125,19 +125,18 @@ const Profile = () => {
             const { data, error } = await supabase
             .storage
             .from('profilePicture')
-            .upload(filename, profileFile, {
+            .upload(profileFile.name, profileFile, {
                 upsert: true
             });
         } catch (error) {
             console.error('Error uploading profileFile:', error.message);
         }
-
-        fetchUserData();
     }
 
     // Run once when page loaded
     useEffect(() => {
         fetchUserData();
+        fetchUserData().then(fetchImage());
     }, []);
 
     useEffect(() => {
@@ -146,8 +145,9 @@ const Profile = () => {
     }, [filename]);
 
     useEffect(() => {
-        console.log(profileUrl)
-    }, [profileUrl]);
+        // uploadImage()
+        console.log(profileImage)
+    }, [profileImage]);
 
     useEffect(() => {
         setUserInput(currentContent); // Update userInput whenever currentContent changes
@@ -231,10 +231,10 @@ const Profile = () => {
                         )
                     ) : (
                         publicProfile ? ( // Image present and in public mode: display image only
-                            <img src={profileUrl} className='profile-picture' />
+                            <img src={profileImage} className='profile-picture' />
                         ) : ( // Image present and not in public mode: display image and profileFile selector overlay
                         <div className='picture-selected'>
-                            <img src={profileUrl} className='profile-picture' />
+                            <img src={profileImage} className='profile-picture' />
                             <input type="file" className="profile-picture-input" onChange={selectProfileImage}/>
                         </div>
                         )
