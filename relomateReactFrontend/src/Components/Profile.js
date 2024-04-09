@@ -290,7 +290,7 @@ const Profile = () => {
                 
                 <div className='profile-name'>
                         <div>{name}</div>
-                        <button onClick={() => setPublic(!publicProfile)} className='handle'>@publicProfile_{publicProfile.toString()}</button>
+                        <button onClick={() => setPublic(!publicProfile)} className='handle'>Toggle public view</button>
                     </div>
                 
             </div>
