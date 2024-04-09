@@ -6,7 +6,7 @@ import edit from '../assets/edit.png';
 
 const Profile = () => {
 
-    // TODO: Update id dynamically to reflect logged in user
+    // Sets id dynamically to reflect logged in user
     const loggedId = localStorage.getItem('loggedInUserId');
     console.log(loggedId)
 
@@ -41,6 +41,7 @@ const Profile = () => {
 
     ///////////////////////////////////////////////////////////////////////////////////////////
 
+    // Create a profile entry for each existing user
     const createProfile = async () => {
         const { data: accountInfoData, error } = await supabase
         .from('accountinfo')
@@ -50,7 +51,7 @@ const Profile = () => {
             const { id } = accountInfoRow; // Extract the ID from the accountinfo row
     
             try {
-                // Check if a profile already exists for this account
+                // Check if a row already exists for this ID
                 const { data: existingProfiles, error: profileError } = await supabase
                 .from('profileDetails')
                 .select('*')
@@ -61,18 +62,19 @@ const Profile = () => {
                 const { data: insertedData, error: insertError } = await supabase
                     .from('profileDetails')
                     .insert([{
+                        // Populate with default values
                         id,
                         bio: "Edit me",
                         location: "Location",
                         hobbies: ["Sport 1","Sport 2"],
                         contacts: ["Contact 1","Contact 2","Contact 3"]
-                    }]); // Insert a new row with the same ID
+                    }]);
 
                 } else {
                     console.log(`Profile already exists for account ID ${id}`);
                 }
             } catch (error) {
-                console.error('Error inserting data:', error.message);
+                console.error('Error retrieving/inserting data:', error.message);
             }
         }
     }
@@ -83,7 +85,7 @@ const Profile = () => {
         const reader = new FileReader(); // Object to read profileFile content
 
         reader.onload = function(e) { // Once profileFile is loaded...
-            setProfileImage(e.target.result); // Set state variable to selected image
+            setProfileImage(e.target.result); // Set state variables to selected image
             setProfileFile(profileFile)
         };
 
@@ -174,21 +176,18 @@ const Profile = () => {
     useEffect(() => {
         createProfile()
         .then(() => {
+            // Ensures correct loading order,
+            // sometimes fetches data before it exists
             fetchUserData();
             fetchImage();
         })
-
     }, []);
 
+    // Fetches image from database when filename has been retrieved from database
     useEffect(() => {
         console.log(filename)
         fetchImage()
     }, [filename]);
-
-    useEffect(() => {
-        // uploadImage()
-        console.log(profileImage)
-    }, [profileImage]);
 
     useEffect(() => {
         setUserInput(currentContent); // Update userInput whenever currentContent changes
