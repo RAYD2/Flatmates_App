@@ -139,21 +139,28 @@ const Profile = () => {
 
         user = accountInfo.data[0]
         setName(`${user.firstname} ${user.surname}`)
-
     }
 
     // Update the database
     const updateDatabase = async () => {
 
+        if (profileFile){
+            await supabase
+            .from('profileDetails')
+            .update({
+                fileName: profileFile.name
+            })
+            .eq('id', loggedId)
+        }
+
         await supabase
         .from('profileDetails')
-        .update(
-            {bio: bio,
+        .update({
+            bio: bio,
             location: location,
             hobbies: hobbies,
-            contacts: contacts,
-            fileName: profileFile.name}
-        )
+            contacts: contacts
+        })
         .eq('id', loggedId)
 
         uploadImage()
@@ -415,7 +422,10 @@ const Profile = () => {
             {publicProfile ? (
                 <button className='bottom-button'>Message</button>
             ) : (
-                <button onClick={updateDatabase} className='bottom-button'>Save</button>
+                <div style={{display: 'flex', margin: '5%'}}>
+                    <button onClick={updateDatabase} className='bottom-button'>Save</button>
+                    <button onClick={() => window.location.reload()} className='bottom-button'>Cancel</button>
+                </div>
             )}
         </div>
     </>
