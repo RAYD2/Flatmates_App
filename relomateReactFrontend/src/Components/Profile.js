@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 import "../ComponentStyles/Profile.css";
 import edit from "../assets/edit.png";
 import NavBar from "../Components/Navbar";
 import supabase from "../apis/supabaseclient";
 const Profile = () => {
+  //TOD: lOgout and redirect if not logged in
+
+  // Sets id dynamically to reflect logged in user
+  const navigate = useNavigate();
   const loggedId = localStorage.getItem("loggedInUserId");
   console.log(loggedId);
 
+  // Edit mode of each section
   const [publicProfile, setPublic] = useState(false);
   const [bioEdit, setBioEdit] = useState(false);
   const [locationEdit, setLocationEdit] = useState(false);
@@ -163,13 +169,18 @@ const Profile = () => {
     }
   };
 
+  // Run once when page loaded
   useEffect(() => {
-    createProfile().then(() => {
-      // Ensures correct loading order,
-      // sometimes fetches data before it exists
-      fetchUserData();
-      fetchImage();
-    });
+    if (loggedId == null) {
+      navigate("/login");
+    } else {
+      createProfile().then(() => {
+        // Ensures correct loading order,
+        // sometimes fetches data before it exists
+        fetchUserData();
+        fetchImage();
+      });
+    }
   }, []);
 
   useEffect(() => {
@@ -419,6 +430,13 @@ const Profile = () => {
             >
               Cancel
             </button>
+            <Link
+              to="/login"
+              className="bottom-button"
+              onClick={() => localStorage.removeItem("loggedInUserId")}
+            >
+              Logout
+            </Link>
           </div>
         )}
       </div>

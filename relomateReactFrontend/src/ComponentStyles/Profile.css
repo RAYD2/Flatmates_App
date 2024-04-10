@@ -174,49 +174,32 @@ input[type="file"] {
   font-size: 1rem;
 }
 
-#location,
-#about-me {
-  padding: 10px;
-  font-size: 1rem;
-}
-#about {
-  padding-bottom: 10rem;
-}
-
-button.edit-button {
-  padding: 0;
-  margin: 0;
-  border: none;
-  cursor: pointer;
-  background-color: rgb(52, 52, 52);
-}
-
-.message-button {
-  width: 20%;
-  padding: 5px;
+.bottom-button {
+  width: 30%;
+  padding: 20px;
+  margin: 5% auto 10% auto;
   border-radius: 40px;
-  background: linear-gradient(to top left, #73c811, #b1dd10);
+  background: linear-gradient(to top left, #2a11c8, #411256);
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);
   color: white;
   font-size: 1.2rem;
   font-weight: 600;
-  position: relative;
-  top: 7rem;
-  left: 40%;
+  transition: 0.5s ease;
+  text-align: center;
+  text-decoration: none;
+  border: 2px solid black;
 }
 
-.edit-mode {
-  margin: 10px;
-  padding: 6px;
-  padding-right: 15rem;
-  border: none;
-  border-radius: 10px;
-  background-color: rgb(69, 69, 69);
-}
-
-.plus-minus {
-  border-radius: 1rem;
-  border-color: transparent;
-  margin-left: 40px;
-  font-weight: 1000;
-  background-color: rgb(52, 52, 52);
+.bottom-button:hover {
+  width: 50%;
+  padding: 20px;
+  margin: 5% auto 10% auto;
+  border-radius: 20px;
+  background: none;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.6);
+  color: black;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: 0.5s ease;
+  border: 2px solid black;
 }
