@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from "react";
 
-import supabase from "../apis/supabaseclient";
 import "../ComponentStyles/Profile.css";
 import edit from "../assets/edit.png";
-
+import NavBar from "../Components/Navbar";
+import supabase from "../apis/supabaseclient";
 const Profile = () => {
-  // Sets id dynamically to reflect logged in user
   const loggedId = localStorage.getItem("loggedInUserId");
   console.log(loggedId);
 
-  // Edit mode of each section
   const [publicProfile, setPublic] = useState(false);
   const [bioEdit, setBioEdit] = useState(false);
   const [locationEdit, setLocationEdit] = useState(false);
   const [hobbiesEdit, setHobbiesEdit] = useState(false);
   const [contactEdit, setContactEdit] = useState(false);
 
-  // Contents of each section
   const [profileImage, setProfileImage] = useState(null);
   const [profileFile, setProfileFile] = useState(null);
   const [profileUrl, setProfileUrl] = useState("");
@@ -28,17 +25,10 @@ const Profile = () => {
   const [hobbies, setHobbies] = useState(["Loading..."]);
   const [contacts, setContacts] = useState(["Loading..."]);
 
-  // Used to enable editing existing content instead of erasing for each edit
   const [currentContent, setCurrentContent] = useState("");
-
-  // Used to temporariliy save all user input into state variable
-  const [userInput, setUserInput] = useState(currentContent); // Sets displayed text alrady present in input text box
-
-  // Used to determine if text box for hobby and contact should be displayed to enable input
+  const [userInput, setUserInput] = useState(currentContent);
   const [hobbiesInput, setHobbiesInput] = useState(false);
   const [contactsInput, setContactsInput] = useState(false);
-
-  ///////////////////////////////////////////////////////////////////////////////////////////
 
   // Create a profile entry for each existing user
   const createProfile = async () => {
@@ -95,7 +85,6 @@ const Profile = () => {
     } catch {}
   };
 
-  // Sets state variable to hold user input
   const handleUserInput = (event) => {
     setUserInput(event.target.value);
   };
@@ -174,7 +163,6 @@ const Profile = () => {
     }
   };
 
-  // Run once when page loaded
   useEffect(() => {
     createProfile().then(() => {
       // Ensures correct loading order,
@@ -184,7 +172,6 @@ const Profile = () => {
     });
   }, []);
 
-  // Fetches image from database when filename has been retrieved from database
   useEffect(() => {
     console.log(filename);
     fetchImage();
@@ -250,40 +237,36 @@ const Profile = () => {
     setContacts(newArray); // Update state variable
   };
 
-  ////////////////////////////////////////////////////////////////////////////////
   return (
     <>
+      <NavBar />
       <div className="background-container">
-        <div style={{ height: "45%", background: "#191919" }} />
-        <div style={{ height: "100%", background: "#2A11C8" }} />
+        <div className="background top" />
+        <div className="background bottom" />
       </div>
 
-      {/* White box in centre of screen */}
       <div className="content-container">
-        {/* Section at the top containing profile picture border and name */}
         <div className="profile-header">
           <div
             className={
-              publicProfile
+              "publicProfile"
                 ? "profile-picture-container"
                 : "profile-picture-editable"
             }
           >
             {profileUrl === null ? (
-              publicProfile ? ( // No image and in public mode: display nothing
+              publicProfile ? (
                 <div />
               ) : (
-                // No image and not in public mode: display profileFile selector overlay only
                 <input
                   type="file"
                   className="profile-picture-input"
                   onChange={selectProfileImage}
                 />
               )
-            ) : publicProfile ? ( // Image present and in public mode: display image only
+            ) : publicProfile ? (
               <img src={profileImage} className="profile-picture" />
             ) : (
-              // Image present and not in public mode: display image and profileFile selector overlay
               <div className="picture-selected">
                 <img src={profileImage} className="profile-picture" />
                 <input
@@ -306,9 +289,7 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* New section below header */}
         <div className="profile-row">
-          {/* Above line */}
           <div className="row-header">
             About me
             {!publicProfile && (
@@ -318,23 +299,19 @@ const Profile = () => {
             )}
           </div>
 
-          {/* Below line */}
-          {/* If edit input for section is false, display content
-                else display text box for input */}
           {bioEdit === false ? (
             <div id="about-me">{bio}</div>
           ) : (
             <input
-              className="edit-input"
+              className="edit-mode"
               type="text"
+              id="about"
               value={userInput}
               onChange={handleUserInput}
             />
           )}
         </div>
 
-        {/* New section */}
-        {/* Similar to bio */}
         <div className="profile-row">
           <div className="row-header">
             Location
@@ -346,10 +323,10 @@ const Profile = () => {
           </div>
 
           {locationEdit === false ? (
-            <div id="location">{location}</div>
+            <div className="location">{location}</div>
           ) : (
             <input
-              className="edit-input"
+              className="edit-mode"
               type="text"
               value={userInput}
               onChange={handleUserInput}
@@ -365,7 +342,6 @@ const Profile = () => {
                 <img src={edit} className="edit-icon" />
               </button>
             )}
-            {/* Display buttons to append or remove hobbies determined by edit input state variable*/}
             {hobbiesEdit && (
               <div style={{ display: "flex" }}>
                 <button onClick={addHobby} className="plus-minus">
@@ -378,16 +354,14 @@ const Profile = () => {
             )}
           </div>
 
-          {/* Iterate through array and display */}
           <div className="row-content">
             {hobbies.map((hobby, index) => (
               <div key={index}>{hobby}</div>
             ))}
 
-            {/* Display input box if section edit input enabled */}
             {hobbiesInput && (
               <input
-                className="edit-input"
+                className="edit-mode"
                 type="text"
                 value={userInput}
                 onChange={handleUserInput}
@@ -396,7 +370,6 @@ const Profile = () => {
           </div>
         </div>
 
-        {/* Section for contacts, identical logic to hobbies section */}
         <div className="profile-row">
           <div className="row-header">
             Contact
@@ -422,10 +395,9 @@ const Profile = () => {
               <div key={index}>{contact}</div>
             ))}
 
-            {/* Display input box if section edit input enabled */}
             {contactsInput && (
               <input
-                className="edit-input"
+                className="edit-mode"
                 type="text"
                 value={userInput}
                 onChange={handleUserInput}
@@ -435,15 +407,15 @@ const Profile = () => {
         </div>
 
         {publicProfile ? (
-          <button className="bottom-button">Message</button>
+          <button className="message-button">Message</button>
         ) : (
           <div style={{ display: "flex", margin: "5%" }}>
-            <button onClick={updateDatabase} className="bottom-button">
+            <button onClick={updateDatabase} className="message-button">
               Save
             </button>
             <button
               onClick={() => window.location.reload()}
-              className="bottom-button"
+              className="message-button"
             >
               Cancel
             </button>

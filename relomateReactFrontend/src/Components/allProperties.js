@@ -166,9 +166,11 @@ export default function Properties() {
         onChange={handleKeywordsChange}
       />
 
-      <button id="additional" onClick={handleSearch}>
-        <Link to="/properties">Search</Link>
-      </button>
+      <Link to="/properties" id="mainOuter">
+        <a className="btn btn-success" onClick={handleSearch}>
+          Search
+        </a>
+      </Link>
     </div>
   );
 }

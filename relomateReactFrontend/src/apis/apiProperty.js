@@ -158,12 +158,12 @@ export default function PropertyListings() {
                             />
                             {property.attributes.bathrooms}
                             <img
-                              src={require("../assets/bathroomIcon.png")}
+                              src={require("../assets/bathroomIcon2.webp")}
                               alt="Bathroom"
                             />
                             {property.attributes.livingRooms}
                             <img
-                              src={require("../assets/livingRoom.png")}
+                              src={require("../assets/livingRoomIcon.png")}
                               alt="Living Room"
                             />
                           </div>

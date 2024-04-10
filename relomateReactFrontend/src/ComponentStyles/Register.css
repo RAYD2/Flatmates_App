@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
   background: url("../assets/NYC-Bridge2.jpeg");
   background-size: 100vw 100vh;
   background-repeat: no-repeat;
@@ -12,8 +12,9 @@
   text-align: center;
   font-size: 28px;
   width: 700px;
-  background-color: transparent;
+  background-color: rgb(52, 52, 52);
   padding: 20px 40px;
+  border-radius: 2rem;
   backdrop-filter: blur(10px);
   border: 2px solid rgba(255, 255, 255, 0.2);
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);

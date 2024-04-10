@@ -18,24 +18,22 @@ function SavedProperties() {
   }, []);
 
   return (
-    <div className="savedPropertiesContainer">
-      <div className="container" style={{ overflowX: "scroll" }}>
-        <div className="row flex-nowrap" style={{ width: "auto" }}>
-          {savedListings.map((savedListing) => (
-            <div className="col" key={savedListing.id}>
-              <div className="card" style={{ width: `18rem`, gap: `5px` }}>
-                <img
-                  src={savedListing.mainImage}
-                  className="card-img-top"
-                  alt="Property Preview"
-                ></img>
-                <div className="card-body">
-                  <p className="card-text">{savedListing.personalNote}</p>
-                </div>
+    <div className="container" style={{ overflowX: "scroll" }}>
+      <div className="row flex-nowrap" style={{ width: "auto" }}>
+        {savedListings.map((savedListing) => (
+          <div className="col" key={savedListing.id}>
+            <div className="card" style={{ width: `18rem`, gap: `5px` }}>
+              <img
+                src={savedListing.mainImage}
+                className="card-img-top"
+                alt="Property Preview"
+              ></img>
+              <div className="card-body">
+                <p className="card-text">{savedListing.personalNote}</p>
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
       </div>
     </div>
   );
