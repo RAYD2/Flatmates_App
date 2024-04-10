@@ -415,7 +415,10 @@ const Profile = () => {
         </div>
 
         {publicProfile ? (
-          <button className="bottom-button">Message</button>
+          <div style={{ display: "flex", margin: "5%" }}>
+            <button className="bottom-button">Message</button>
+            <button className="bottom-button">Add friend</button>
+          </div>
         ) : (
           <div style={{ display: "flex", margin: "5%" }}>
             <button onClick={updateDatabase} className="bottom-button">
