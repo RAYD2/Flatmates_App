@@ -20,7 +20,7 @@ export default function PropertyResult() {
           },
           headers: {
             "X-RapidAPI-Key":
-              "1aa0a8897fmsh17efa2862bf9488p19ce6djsnaacb7415f3b6",
+              "766170e95amsh648219864b9d8e5p120019jsn83defc49990b",
             "X-RapidAPI-Host": "zoopla.p.rapidapi.com",
           },
         };
