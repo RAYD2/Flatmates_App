@@ -10,7 +10,7 @@ import apiCall from "../apis/propertyfind";
 function NavBar() {
   const [responseData, setResponseData] = useState(null);
   const [defaultSearch, setDefaultSearch] = useState("Search e.g. Newcastle");
-
+  const loggedId = localStorage.getItem("loggedInUserId");
   const navigate = useNavigate();
 
   const handleSearch = (event) => {
@@ -51,6 +51,14 @@ function NavBar() {
           </Link>
           <div className="nav-list">
             <Link
+              to="/"
+              className={
+                location.pathname === "/" ? "nav-selected" : "nav-default"
+              }
+            >
+              Home
+            </Link>
+            <Link
               to="/Profile"
               className={
                 location.pathname === "/Profile"
@@ -60,24 +68,27 @@ function NavBar() {
             >
               Profile
             </Link>
-            <Link
-              to="/Messages"
-              className={
-                location.pathname === "/Messages"
-                  ? "nav-selected"
-                  : "nav-default"
-              }
-            >
-              Messages
-            </Link>
-            <Link
-              to="/login"
-              className={
-                location.pathname === "/Login" ? "nav-selected" : "nav-default"
-              }
-            >
-              Login
-            </Link>
+
+            {loggedId === null ? (
+              <Link
+                to="/login"
+                className={
+                  location.pathname === "/login"
+                    ? "nav-selected"
+                    : "nav-default"
+                }
+              >
+                Login
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="nav-default"
+                onClick={() => localStorage.removeItem("loggedInUserId")}
+              >
+                Logout
+              </Link>
+            )}
           </div>
         </div>
 
