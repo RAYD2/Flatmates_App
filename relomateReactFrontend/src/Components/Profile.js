@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react';
+import { Link, useNavigate } from "react-router-dom";
 
 import supabase from '../apis/supabaseclient';
 import '../ComponentStyles/Profile.css';
@@ -6,7 +7,10 @@ import edit from '../assets/edit.png';
 
 const Profile = () => {
 
+    //TOD: lOgout and redirect if not logged in
+
     // Sets id dynamically to reflect logged in user
+    const navigate = useNavigate();
     const loggedId = localStorage.getItem('loggedInUserId');
     console.log(loggedId)
 
@@ -181,13 +185,19 @@ const Profile = () => {
 
     // Run once when page loaded
     useEffect(() => {
-        createProfile()
-        .then(() => {
-            // Ensures correct loading order,
-            // sometimes fetches data before it exists
-            fetchUserData();
-            fetchImage();
-        })
+        if (loggedId == null) {
+            navigate("/login")
+        } else {
+            createProfile()
+            .then(() => {
+                // Ensures correct loading order,
+                // sometimes fetches data before it exists
+                fetchUserData();
+                fetchImage();
+            })
+        }
+
+
     }, []);
 
     // Fetches image from database when filename has been retrieved from database
@@ -425,6 +435,7 @@ const Profile = () => {
                 <div style={{display: 'flex', margin: '5%'}}>
                     <button onClick={updateDatabase} className='bottom-button'>Save</button>
                     <button onClick={() => window.location.reload()} className='bottom-button'>Cancel</button>
+                    <Link to="/login" className='bottom-button' onClick={() => localStorage.removeItem('loggedInUserId')}>Logout</Link>
                 </div>
             )}
         </div>

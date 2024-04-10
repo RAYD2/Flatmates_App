@@ -212,7 +212,7 @@ button.edit-button{
 }
 
 .bottom-button{
-    width: 40%;
+    width: 30%;
     padding: 20px;
     margin: 5% auto 10% auto;
     border-radius: 40px;
@@ -222,10 +222,13 @@ button.edit-button{
     font-size: 1.2rem;
     font-weight: 600;
     transition: 0.5s ease;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid black;
 }
 
 .bottom-button:hover{
-    width: 60%;
+    width: 50%;
     padding: 20px;
     margin: 5% auto 10% auto;
     border-radius: 20px;
@@ -235,6 +238,7 @@ button.edit-button{
     font-size: 1.2rem;
     font-weight: 600;
     transition: 0.5s ease;
+    border: 2px solid black;
 }
 
 
