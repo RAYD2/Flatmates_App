@@ -1,4 +1,3 @@
-// PropertyResult.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../ComponentStyles/propertyResults.css";
@@ -6,38 +5,30 @@ import "../ComponentStyles/propertyResults.css";
 export default function PropertyResult() {
   const [responseData, setResponseData] = useState(null);
   const [selectedOption, setSelectedOption] = useState(null);
-  const [loading, setLoading] = useState(true); // Added loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const locationVal = localStorage.getItem("currentSearch");
 
-        // Check if data already exists in localStorage
-        const cachedData = localStorage.getItem("cachedData");
-        if (cachedData) {
-          setResponseData(JSON.parse(cachedData));
-          setLoading(false);
-        } else {
-          const options = {
-            method: "GET",
-            url: "https://zoopla.p.rapidapi.com/v2/auto-complete",
-            params: {
-              locationPrefix: locationVal,
-            },
-            headers: {
-              "X-RapidAPI-Key":
-                "104aa68165msh8f058d6de7ff6e0p11141ajsn14a8f255e476",
-              "X-RapidAPI-Host": "zoopla.p.rapidapi.com",
-            },
-          };
+        const options = {
+          method: "GET",
+          url: "https://zoopla.p.rapidapi.com/v2/auto-complete",
+          params: {
+            locationPrefix: locationVal,
+          },
+          headers: {
+            "X-RapidAPI-Key":
+              "1aa0a8897fmsh17efa2862bf9488p19ce6djsnaacb7415f3b6",
+            "X-RapidAPI-Host": "zoopla.p.rapidapi.com",
+          },
+        };
 
-          const response = await axios.request(options);
-          setResponseData(response.data);
-          setLoading(false);
-          // Cache the response
-          localStorage.setItem("cachedData", JSON.stringify(response.data));
-        }
+        const response = await axios.request(options);
+        setResponseData(response.data);
+        setLoading(false);
+        localStorage.setItem("cachedData", JSON.stringify(response.data));
       } catch (error) {
         console.error(error);
         setLoading(false);
@@ -48,12 +39,16 @@ export default function PropertyResult() {
   }, []);
 
   const handleSelectionChange = (event) => {
-    const selectedIndex = event.target.selectedIndex;
-    const selectedGeo = responseData.data.geoSuggestion[selectedIndex];
+    if (responseData && responseData.data && responseData.data.geoSuggestion) {
+      const selectedIndex = event.target.selectedIndex;
+      const selectedGeo = responseData.data.geoSuggestion[selectedIndex];
 
-    if (selectedGeo) {
-      localStorage.setItem("selectedGeoIdentifier", selectedGeo.geoIdentifier);
       localStorage.setItem("selectedGeoLabel", selectedGeo.geoLabel);
+      localStorage.setItem("radius", selectedGeo.radius);
+      localStorage.setItem("maxPrice", selectedGeo.MaxPrice);
+      localStorage.setItem("minPrice", selectedGeo.MinPrice);
+      localStorage.setItem("bedsMin", selectedGeo.Bedrooms);
+      localStorage.setItem("bathroomNumber", selectedGeo.Bathrooms);
 
       setSelectedOption(selectedGeo);
     }
@@ -70,11 +65,12 @@ export default function PropertyResult() {
             onChange={handleSelectionChange}
             value={selectedOption ? selectedOption.geoLabel : ""}
           >
-            {responseData.data.geoSuggestion.map((suggestion, index) => (
-              <option id="specificLocationSearch" key={index}>
-                {suggestion.geoLabel}
-              </option>
-            ))}
+            {responseData &&
+              responseData.data &&
+              responseData.data.geoSuggestion &&
+              responseData.data.geoSuggestion.map((suggestion, index) => (
+                <option key={index}>{suggestion.geoLabel}</option>
+              ))}
           </select>
         </div>
       )}

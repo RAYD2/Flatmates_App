@@ -18,8 +18,8 @@ export default function AddPropertyInput({ property, setAddProperty }) {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent default form submission
-    handleImageClick(); // Call function to handle image click
+    e.preventDefault();
+    handleImageClick();
   };
 
   return (

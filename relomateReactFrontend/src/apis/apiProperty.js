@@ -10,12 +10,18 @@ export default function PropertyListings() {
   const [addProperty, setAddProperty] = useState(false);
   const [responseDataSecondary, setResponseDataSecondary] = useState(null);
   const [responseDataThirdly, setResponseDataThirdly] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const geoLabel = localStorage.getItem("selectedGeoLabel");
-  const geoIdentifier = localStorage.getItem("selectedGeoIdentifier");
+  const cachedData = localStorage.getItem("cachedData");
+  const parsedData = JSON.parse(cachedData);
+  const geoIdentifier = parsedData.data.geoSuggestion[0].geoIdentifier;
+  const priceMin = localStorage.getItem("minPrice");
   const priceMax = localStorage.getItem("maxPrice");
   const radius = localStorage.getItem("radiusSetting");
   const propertyType = localStorage.getItem("propertyTypeSetting");
+
+  const numberOfBeds = localStorage.getItem("bedsMin");
 
   const fetchData = async () => {
     try {
@@ -30,19 +36,23 @@ export default function PropertyListings() {
           page: "1",
           section: "to-rent",
           radius: radius,
+          priceMin: priceMin,
+          bedsMax: numberOfBeds,
           priceMax: priceMax,
           propertySubType: propertyType,
         },
         headers: {
           "X-RapidAPI-Key":
-            "104aa68165msh8f058d6de7ff6e0p11141ajsn14a8f255e476",
+            "1aa0a8897fmsh17efa2862bf9488p19ce6djsnaacb7415f3b6",
           "X-RapidAPI-Host": "zoopla.p.rapidapi.com",
         },
       };
       const response = await axios.request(options);
       setResponseData(response.data);
+      setLoading(false);
     } catch (error) {
       console.error(error);
+      setLoading(false);
     }
   };
 
@@ -65,7 +75,7 @@ export default function PropertyListings() {
         },
         headers: {
           "X-RapidAPI-Key":
-            "104aa68165msh8f058d6de7ff6e0p11141ajsn14a8f255e476",
+            "1aa0a8897fmsh17efa2862bf9488p19ce6djsnaacb7415f3b6",
           "X-RapidAPI-Host": "zoopla.p.rapidapi.com",
         },
       };
@@ -82,11 +92,11 @@ export default function PropertyListings() {
         method: "GET",
         url: "https://zoopla.p.rapidapi.com/properties/v2/detail",
         params: {
-          listing_id: property.listingId,
+          listingId: property.listingId,
         },
         headers: {
           "X-RapidAPI-Key":
-            "104aa68165msh8f058d6de7ff6e0p11141ajsn14a8f255e476",
+            "1aa0a8897fmsh17efa2862bf9488p19ce6djsnaacb7415f3b6",
           "X-RapidAPI-Host": "zoopla.p.rapidapi.com",
         },
       };
@@ -106,74 +116,78 @@ export default function PropertyListings() {
   }, [geoLabel, geoIdentifier, priceMax, radius, propertyType]);
   return (
     <>
-      <div className="property-listings">
-        {responseData &&
-          responseData.data.listings &&
-          responseData.data.listings.regular.map((property) => (
-            <>
-              {addProperty && (
-                <div className="cardForInput" key={property.id}>
-                  {selectedProperty === property && (
-                    <AddPropertyInput
-                      property={property}
-                      setAddProperty={setAddProperty}
-                    />
-                  )}
-                </div>
-              )}
-
-              {!addProperty && (
-                <>
-                  <div className="card" key={property.id}>
-                    <img
-                      className="card-img-top"
-                      src={property.imageUris[0]}
-                      alt="Property Image"
-                      onClick={() => {
-                        handleLookProperty(property);
-                        handleSpecifics(property);
-                      }}
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title">{property.title}</h5>
-                      <p className="card-text">
-                        <div className="attributes">
-                          {property.attributes.bedrooms}
-                          <img
-                            src={require("../assets/bedroomIcon.png")}
-                            alt="Bedroom"
-                          />
-                          {property.attributes.bathrooms}
-                          <img
-                            src={require("../assets/bathroomIcon.png")}
-                            alt="Bathroom"
-                          />
-                          {property.attributes.livingRooms}
-                          <img
-                            src={require("../assets/livingRoom.png")}
-                            alt="Living Room"
-                          />
-                        </div>
-                      </p>
-                      <div className="details">
-                        <p className="btn btn-primary ml-3">View Listing</p>
-                        <p
-                          className="btn btn-dark"
-                          onClick={() => handleAddProperty(property)}
-                        >
-                          Save Property
-                        </p>
-                        <p>Price: {property.pricing.label}</p>
-                      </div>
-                      <hr />
-                      <p>{property.address}</p>
-                    </div>
+      {loading ? ( // Conditionally render loading message
+        <div>Loading...</div>
+      ) : (
+        <div className="property-listings">
+          {responseData &&
+            responseData.data.listings &&
+            responseData.data.listings.regular.map((property) => (
+              <>
+                {addProperty && (
+                  <div className="cardForInput" key={property.id}>
+                    {selectedProperty === property && (
+                      <AddPropertyInput
+                        property={property}
+                        setAddProperty={setAddProperty}
+                      />
+                    )}
                   </div>
-                </>
-              )}
-            </>
-          ))}
-      </div>
+                )}
+
+                {!addProperty && (
+                  <>
+                    <div className="card" key={property.id}>
+                      <img
+                        className="card-img-top"
+                        src={property.imageUris[0]}
+                        alt="Property Image"
+                        onClick={() => {
+                          handleLookProperty(property);
+                          handleSpecifics(property);
+                        }}
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title">{property.title}</h5>
+                        <p className="card-text">
+                          <div className="attributes">
+                            {property.attributes.bedrooms}
+                            <img
+                              src={require("../assets/bedroomIcon.png")}
+                              alt="Bedroom"
+                            />
+                            {property.attributes.bathrooms}
+                            <img
+                              src={require("../assets/bathroomIcon.png")}
+                              alt="Bathroom"
+                            />
+                            {property.attributes.livingRooms}
+                            <img
+                              src={require("../assets/livingRoom.png")}
+                              alt="Living Room"
+                            />
+                          </div>
+                        </p>
+                        <div className="details">
+                          <p className="btn btn-primary ml-3">View Listing</p>
+                          <p
+                            className="btn btn-dark"
+                            onClick={() => handleAddProperty(property)}
+                          >
+                            Save Property
+                          </p>
+                          <p>Price: {property.pricing.label}</p>
+                        </div>
+                        <hr />
+                        <p>{property.address}</p>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </>
+            ))}
+        </div>
+      )}
       <div>
         <SideDetails
           data={responseDataSecondary}

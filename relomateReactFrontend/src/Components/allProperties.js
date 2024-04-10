@@ -1,5 +1,4 @@
-// Properties.js
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../index.css";
 import "../ComponentStyles/allProperties.css";
@@ -7,7 +6,22 @@ import "../ComponentStyles/allProperties.css";
 export default function Properties() {
   const [radius, setRadius] = useState("1km");
   const [propertyType, setPropertyType] = useState("flats");
-  const [maxPrice, setMaxPrice] = useState("800pcm");
+  const [minPrice, setMinPrice] = useState("800pcm");
+  const [maxPrice, setMaxPrice] = useState("1000pcm");
+  const [bedrooms, setBedrooms] = useState("");
+
+  const [keywords, setKeywords] = useState("");
+
+  useEffect(() => {
+    const minPriceValue = parseInt(minPrice.replace("pcm", ""));
+    const maxPriceOptions = [];
+    for (let i = minPriceValue + 200; i <= 5000; i += 200) {
+      maxPriceOptions.push(`${i}`);
+    }
+    setMaxPriceOptions(maxPriceOptions);
+  }, [minPrice]);
+
+  const [maxPriceOptions, setMaxPriceOptions] = useState([]);
 
   const handleRadiusChange = (event) => {
     setRadius(event.target.value);
@@ -19,9 +33,23 @@ export default function Properties() {
     localStorage.setItem("propertyTypeSetting", event.target.value);
   };
 
+  const handleMinPriceChange = (event) => {
+    setMinPrice(event.target.value);
+    localStorage.setItem("minPrice", event.target.value);
+  };
+
   const handleMaxPriceChange = (event) => {
     setMaxPrice(event.target.value);
     localStorage.setItem("maxPrice", event.target.value);
+  };
+
+  const handleBedroomsChange = (event) => {
+    setBedrooms(event.target.value);
+    localStorage.setItem("bedsMin", event.target.value);
+  };
+
+  const handleKeywordsChange = (event) => {
+    setKeywords(event.target.value);
   };
 
   const handleSearch = () => {
@@ -30,6 +58,8 @@ export default function Properties() {
       localStorage.getItem("maxPrice"),
       localStorage.getItem("radiusSetting"),
       localStorage.getItem("propertyTypeSetting"),
+      bedrooms,
+      keywords,
     ];
     let recentSearches = JSON.parse(localStorage.getItem("recentSearches"));
     if (!recentSearches) {
@@ -72,43 +102,69 @@ export default function Properties() {
         <label id="priceLabel" htmlFor="Price">
           Price:
         </label>
+
         <div className="priceCalculation">
           <select
-            name="Price"
-            id="Price"
+            name="Min Price"
+            id="MinPrice"
+            value={minPrice}
+            onChange={handleMinPriceChange}
+          >
+            <option value="500">500pcm</option>
+            <option value="1000">1000pcm</option>
+            <option value="1500">1500pcm</option>
+            <option value="2000">2000pcm</option>
+            <option value="2500">2500pcm</option>
+            <option value="3000">3000pcm</option>
+            <option value="3500">3500pcm</option>
+            <option value="4000">4000pcm</option>
+            <option value="4500">4500pcm</option>
+            <option value="5000">5000pcm</option>
+            <option value="5500">5500pcm</option>
+            <option value="6000">6000pcm</option>
+            <option value="6500">6500pcm</option>
+            <option value="7000">7000pcm</option>
+            <option value="7500">7500pcm</option>
+          </select>
+
+          <select
+            name="Max Price"
+            id="MaxPrice"
             value={maxPrice}
             onChange={handleMaxPriceChange}
           >
-            <option value="800pcm">800pcm</option>
-            <option value="1000pcm">1000pcm</option>
-            <option value="1200pcm">1200pcm</option>
-            <option value="1400pcm">1400pcm</option>
-            <option value="1600pcm">1600pcm</option>
-            <option value="1800pcm">1800pcm</option>
-            <option value="2000pcm">2000pcm</option>
-            <option value="2200pcm">2200pcm</option>
-            <option value="2400pcm">2400pcm</option>
-            <option value="2600pcm">2600pcm</option>
-            <option value="2800pcm">2800pcm</option>
-            <option value="3000pcm">3000pcm</option>
-            <option value="3200pcm">3200pcm</option>
-            <option value="3400pcm">3400pcm</option>
-            <option value="3600pcm">3600pcm</option>
-            <option value="3800pcm">3800pcm</option>
-            <option value="4000pcm">4000pcm</option>
-            <option value="4200pcm">4200pcm</option>
-            <option value="4400pcm">4400pcm</option>
-            <option value="4600pcm">4600pcm</option>
+            {maxPriceOptions.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
           </select>
         </div>
       </div>
 
-      <label htmlFor="Volume">Volume:</label>
-      <select name="Volume" id="Volume">
-        <option value="less3">less than 3</option>
-        <option value="less10">less than 10</option>
-        <option value="less100">less than 100</option>
+      <label htmlFor="Bedrooms">Bedrooms:</label>
+      <select
+        id="Bedrooms"
+        name="Bedrooms"
+        value={bedrooms}
+        onChange={handleBedroomsChange}
+      >
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
       </select>
+
+      <label htmlFor="Keywords">Keywords:</label>
+      <input
+        type="text"
+        id="Keywords"
+        name="Keywords"
+        value={keywords}
+        onChange={handleKeywordsChange}
+      />
 
       <button id="additional" onClick={handleSearch}>
         <Link to="/properties">Search</Link>

@@ -17,7 +17,7 @@ function SavedSearches() {
                   <div className="card">
                     <div className="card-header">Featured</div>
                     <div className="card-body">
-                      <h5 className="card-title">{search[0]}</h5>
+                      <h5 className="card-title">{index[0]}</h5>
                       <p className="card-text">Max Price: {search[1]}</p>
                       <p className="card-text">Within: {search[2]}</p>
                       <p className="card-text">{search[3]}</p>

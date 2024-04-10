@@ -5,7 +5,7 @@
   margin-top: 80px;
   margin-right: 0px;
   background-color: #2a11c8;
-  height: 100vh;
+  height: auto;
 
   color: white;
   min-width: 24%;
@@ -26,7 +26,7 @@
 
 .mapSuggestions p {
   font-family: Inter;
-  font-size: 16px;
+  font-size: 14px;
   text-align: left;
 }
 
@@ -34,4 +34,21 @@
   color: white;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   margin-left: 20px;
+}
+
+.mapSuggestions #details {
+  text-align: left;
+}
+
+.watchers p {
+  font-size: 16px;
+}
+
+.transportation {
+  display: flex;
+  align-items: baseline;
+}
+
+.transportation p {
+  font-size: 20px;
 }
