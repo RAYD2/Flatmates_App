@@ -6,11 +6,12 @@ import "../../ComponentStyles/MatchEmployeeCss/FilterBar.css"
 
 function FilterBar() {
 
+
+    //change this name as u wish, was originally for searchbar function
     const handleClick = async () => {
         try {
-        //   const data = await apiCall();
-        //   setResponseData(data);
-        // nothing for now
+        // does nothing.
+        //need to write code that search for data in database here
 
         } catch (error) {
           console.error("Error occurred:", error);
@@ -33,6 +34,8 @@ function FilterBar() {
             <Link to="/MatchingEmployee">
               <button
                 className="button SearchButton"
+
+                // SearchBar onclick function isnt done.
                 onClick={null}
               >
                 Search
@@ -47,7 +50,8 @@ function FilterBar() {
         <nav className="nav-FilterContainer">
             <div className="nav-Filters">
 
-                {/* filter. need to add function that change the loaded data */}
+                {/* All filter. function isnt coded so nothing of these actually works */}
+                {/* every "OnClick" is suppose to request data from database and load it onto the page */}
                 <select className="nav-FilterItem">
                 <option value="option1" onClick={null}>Gender: All</option>
                 <option value="option2" onClick={null}>Gender: Male</option>
