@@ -23,6 +23,9 @@ const Register = () => {
           password: password,
         })
         .single();
+
+        history("/login")
+
       if (error) throw error;
       history.push("/");
     } catch (error) {}
@@ -133,7 +136,7 @@ const Register = () => {
               </button>
             </div>
             <div className="register-link">
-              Already got an account?<Link to="/">Login</Link>
+              Already got an account?<Link to="/"> Login</Link>
             </div>
           </form>
         </div>
