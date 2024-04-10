@@ -1,5 +1,5 @@
-import { React, useState, useHistory, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { React, useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import "../index.css";
 import "../ComponentStyles/Navbar.css";
@@ -10,6 +10,18 @@ import apiCall from "../apis/propertyfind";
 function NavBar() {
   const [responseData, setResponseData] = useState(null);
   const [defaultSearch, setDefaultSearch] = useState("Search e.g. Newcastle");
+
+  const navigate = useNavigate();
+
+  const handleSearch = (event) => {
+    event.preventDefault();
+    const inputField = document.getElementById("searchButton");
+    if (inputField.value.trim() !== "") {
+      localStorage.setItem("currentSearch", inputField.value);
+      handleClick();
+      navigate("/filter");
+    }
+  };
 
   const handleClick = async () => {
     try {
@@ -70,7 +82,7 @@ function NavBar() {
         </div>
 
         <div className="nav-right">
-          <form className="d-flex">
+          <form className="d-flex" onSubmit={handleSearch}>
             <input
               className="form-control me-2"
               type="search"
@@ -78,21 +90,8 @@ function NavBar() {
               placeholder="Search e.g. Newcastle"
               aria-label="Search"
             />
-            <Link to="/filter">
-              <button
-                className="button_search"
-                onClick={() => {
-                  setDefaultSearch("Barnet");
-                  localStorage.setItem(
-                    "currentSearch",
-                    document.getElementById("searchButton").value,
-                    handleClick
-                  );
-                }}
-              >
-                Search
-              </button>
-            </Link>
+
+            <button className="button_search">Search</button>
           </form>
 
           <button className="menu-button" onClick={toggleMenu}>
