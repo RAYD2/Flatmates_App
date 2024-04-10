@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import supabase from "../apis/supabaseclient";
 import "../ComponentStyles/Login.css";
 import "../App.css";
@@ -7,6 +7,8 @@ import NavBar from "./Navbar";
 const Login = () => {
   const [emailaddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   async function fetchData(email, pass) {
     try {
@@ -19,8 +21,9 @@ const Login = () => {
       if (error) throw error;
       if (data.length === 1) {
         console.log(password);
-        alert("Login successful!");
+        // alert("Login successful!");
         localStorage.setItem("loggedInUserId", data[0].id);
+        navigate("/profile")
       } else {
         alert("Email address or password are incorrect - please try again!");
       }
@@ -74,7 +77,7 @@ const Login = () => {
               </button>
             </div>
             <div className="register-link">
-              Haven't got an account yet?<Link to="/Register">Register</Link>
+              Haven't got an account yet?<Link to="/Register"> Register</Link>
             </div>
           </form>
         </div>
