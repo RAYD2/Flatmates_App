@@ -252,15 +252,13 @@ const Profile = () => {
     <>
       <NavBar />
       <div className="background-container">
-        <div className="background top" />
-        <div className="background bottom" />
       </div>
 
       <div className="content-container">
         <div className="profile-header">
           <div
             className={
-              "publicProfile"
+              publicProfile
                 ? "profile-picture-container"
                 : "profile-picture-editable"
             }
@@ -314,9 +312,8 @@ const Profile = () => {
             <div id="about-me">{bio}</div>
           ) : (
             <input
-              className="edit-mode"
+              className="edit-input"
               type="text"
-              id="about"
               value={userInput}
               onChange={handleUserInput}
             />
@@ -334,10 +331,10 @@ const Profile = () => {
           </div>
 
           {locationEdit === false ? (
-            <div className="location">{location}</div>
+            <div id="location">{location}</div>
           ) : (
             <input
-              className="edit-mode"
+              className="edit-input"
               type="text"
               value={userInput}
               onChange={handleUserInput}
@@ -372,7 +369,7 @@ const Profile = () => {
 
             {hobbiesInput && (
               <input
-                className="edit-mode"
+                className="edit-input"
                 type="text"
                 value={userInput}
                 onChange={handleUserInput}
@@ -408,7 +405,7 @@ const Profile = () => {
 
             {contactsInput && (
               <input
-                className="edit-mode"
+                className="edit-input"
                 type="text"
                 value={userInput}
                 onChange={handleUserInput}
@@ -418,15 +415,15 @@ const Profile = () => {
         </div>
 
         {publicProfile ? (
-          <button className="message-button">Message</button>
+          <button className="bottom-button">Message</button>
         ) : (
           <div style={{ display: "flex", margin: "5%" }}>
-            <button onClick={updateDatabase} className="message-button">
+            <button onClick={updateDatabase} className="bottom-button">
               Save
             </button>
             <button
               onClick={() => window.location.reload()}
-              className="message-button"
+              className="bottom-button"
             >
               Cancel
             </button>
