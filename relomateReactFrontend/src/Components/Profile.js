@@ -5,8 +5,9 @@ import "../ComponentStyles/Profile.css";
 import edit from "../assets/edit.png";
 
 const Profile = () => {
-  // TODO: Update id dynamically to reflect logged in user
-  const id = 32;
+  // Sets id dynamically to reflect logged in user
+  const loggedId = localStorage.getItem("loggedInUserId");
+  console.log(loggedId);
 
   // Edit mode of each section
   const [publicProfile, setPublic] = useState(false);
@@ -22,10 +23,10 @@ const Profile = () => {
   const [filename, setFilename] = useState("");
 
   const [name, setName] = useState("");
-  const [bio, setBio] = useState("Edit me");
-  const [location, setLocation] = useState("Location");
-  const [hobbies, setHobbies] = useState(["1", "2", "3", "4"]);
-  const [contacts, setContacts] = useState(["1", "2", "3"]);
+  const [bio, setBio] = useState("Loading...");
+  const [location, setLocation] = useState("Loading...");
+  const [hobbies, setHobbies] = useState(["Loading..."]);
+  const [contacts, setContacts] = useState(["Loading..."]);
 
   // Used to enable editing existing content instead of erasing for each edit
   const [currentContent, setCurrentContent] = useState("");
@@ -39,16 +40,54 @@ const Profile = () => {
 
   ///////////////////////////////////////////////////////////////////////////////////////////
 
+  // Create a profile entry for each existing user
+  const createProfile = async () => {
+    const { data: accountInfoData, error } = await supabase
+      .from("accountinfo")
+      .select("*");
+
+    for (const accountInfoRow of accountInfoData) {
+      const { id } = accountInfoRow; // Extract the ID from the accountinfo row
+
+      try {
+        // Check if a row already exists for this ID
+        const { data: existingProfiles, error: profileError } = await supabase
+          .from("profileDetails")
+          .select("*")
+          .eq("id", id);
+
+        if (existingProfiles.length === 0) {
+          // Insert a new row into the profileDetails table with the same ID
+          const { data: insertedData, error: insertError } = await supabase
+            .from("profileDetails")
+            .insert([
+              {
+                // Populate with default values
+                id,
+                bio: "No bio recorded",
+                location: "No location recorded",
+                hobbies: ["No hobbies recorded"],
+                contacts: ["No contacts recorded"],
+              },
+            ]);
+        } else {
+          console.log(`Profile already exists for account ID ${id}`);
+        }
+      } catch (error) {
+        console.error("Error retrieving/inserting data:", error.message);
+      }
+    }
+  };
+
   // Handle profileFile selection
-  const selectProfileImage = (event) => {
+  const selectProfileImage = async (event) => {
     const profileFile = event.target.files[0]; // Assign first profileFile from array to variable
     const reader = new FileReader(); // Object to read profileFile content
 
     reader.onload = function (e) {
       // Once profileFile is loaded...
-      setProfileImage(e.target.result); // Set state variable to selected image
+      setProfileImage(e.target.result); // Set state variables to selected image
       setProfileFile(profileFile);
-      setFilename(profileFile.name);
     };
 
     try {
@@ -66,22 +105,24 @@ const Profile = () => {
     const accountInfo = await supabase
       .from("accountinfo")
       .select("firstname, surname, emailaddress")
-      .eq("id", id);
+      .eq("id", loggedId);
 
     const profileDetails = await supabase
       .from("profileDetails")
       .select("bio, location, hobbies, contacts, fileName")
-      .eq("id", id);
+      .eq("id", loggedId);
 
     setUserData(accountInfo, profileDetails);
   };
 
   const fetchImage = async () => {
+    console.log("Fetching", filename);
+
     const imageUrl = await supabase.storage
       .from("profilePicture")
       .getPublicUrl(filename);
 
-    setProfileUrl(imageUrl.data.publicUrl);
+    setProfileImage(imageUrl.data.publicUrl);
   };
 
   // Set state variables
@@ -99,6 +140,15 @@ const Profile = () => {
 
   // Update the database
   const updateDatabase = async () => {
+    if (profileFile) {
+      await supabase
+        .from("profileDetails")
+        .update({
+          fileName: profileFile.name,
+        })
+        .eq("id", loggedId);
+    }
+
     await supabase
       .from("profileDetails")
       .update({
@@ -106,9 +156,8 @@ const Profile = () => {
         location: location,
         hobbies: hobbies,
         contacts: contacts,
-        fileName: filename,
       })
-      .eq("id", id);
+      .eq("id", loggedId);
 
     uploadImage();
   };
@@ -117,29 +166,29 @@ const Profile = () => {
     try {
       const { data, error } = await supabase.storage
         .from("profilePicture")
-        .upload(filename, profileFile, {
+        .upload(profileFile.name, profileFile, {
           upsert: true,
         });
     } catch (error) {
       console.error("Error uploading profileFile:", error.message);
     }
-
-    fetchUserData();
   };
 
   // Run once when page loaded
   useEffect(() => {
-    fetchUserData();
+    createProfile().then(() => {
+      // Ensures correct loading order,
+      // sometimes fetches data before it exists
+      fetchUserData();
+      fetchImage();
+    });
   }, []);
 
+  // Fetches image from database when filename has been retrieved from database
   useEffect(() => {
     console.log(filename);
     fetchImage();
   }, [filename]);
-
-  useEffect(() => {
-    console.log(profileUrl);
-  }, [profileUrl]);
 
   useEffect(() => {
     setUserInput(currentContent); // Update userInput whenever currentContent changes
@@ -203,7 +252,7 @@ const Profile = () => {
 
   ////////////////////////////////////////////////////////////////////////////////
   return (
-    <div className="profileContainer">
+    <>
       <div className="background-container">
         <div style={{ height: "45%", background: "#191919" }} />
         <div style={{ height: "100%", background: "#2A11C8" }} />
@@ -232,11 +281,11 @@ const Profile = () => {
                 />
               )
             ) : publicProfile ? ( // Image present and in public mode: display image only
-              <img src={profileUrl} className="profile-picture" />
+              <img src={profileImage} className="profile-picture" />
             ) : (
               // Image present and not in public mode: display image and profileFile selector overlay
               <div className="picture-selected">
-                <img src={profileUrl} className="profile-picture" />
+                <img src={profileImage} className="profile-picture" />
                 <input
                   type="file"
                   className="profile-picture-input"
@@ -252,7 +301,7 @@ const Profile = () => {
               onClick={() => setPublic(!publicProfile)}
               className="handle"
             >
-              @publicProfile_{publicProfile.toString()}
+              Toggle public view
             </button>
           </div>
         </div>
@@ -388,12 +437,20 @@ const Profile = () => {
         {publicProfile ? (
           <button className="bottom-button">Message</button>
         ) : (
-          <button onClick={updateDatabase} className="bottom-button">
-            Save
-          </button>
+          <div style={{ display: "flex", margin: "5%" }}>
+            <button onClick={updateDatabase} className="bottom-button">
+              Save
+            </button>
+            <button
+              onClick={() => window.location.reload()}
+              className="bottom-button"
+            >
+              Cancel
+            </button>
+          </div>
         )}
       </div>
-    </div>
+    </>
   );
 };
 
