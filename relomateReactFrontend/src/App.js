@@ -12,6 +12,9 @@ import Profile from "./Components/Profile";
 import AddPropertyInput from "./Components/addObject";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
+import MatchingEmployee from "./Pages/MatchingEmployeePage";
+
+
 function App() {
   return (
     <>
@@ -34,6 +37,7 @@ function App() {
           <Route exact path="/input" element={<AddPropertyInput />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
+          <Route exact path="/MatchingEmployee" element={<MatchingEmployee />}/>
         </Routes>
       </Router>
     </>

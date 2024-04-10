@@ -1,0 +1,122 @@
+.form-SearchBar{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-left: 1em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+
+.nav-SearchBar-Container{
+    background-color: grey;
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+}
+
+.SearchButton{
+
+}
+
+.button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    border-radius: 0.5em;
+    color: white;
+    padding: 1em 2vw;
+    margin-right: 1em;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.button:hover {
+background-color: #45a049; /* Darker green */
+}
+
+.nav-FilterContainer{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    background: #f8f9fa;
+    width: 100%;
+}
+
+
+/* Options ALL contianer */
+.nav-Filters{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+}
+
+
+/* option sub container */
+
+.nav-FilterItem{
+    width: 100%;
+    margin: 1vw;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 400;
+    border: none;
+    background: transparent;
+    text-align: center;
+    color: black;
+    min-height: 75px;
+}
+
+/* special css */
+.nav-FilterItem-special{
+    margin: 1em;
+    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: 400;
+    border: none;
+    background: transparent;
+    text-align: center;
+    color: blue;
+}
+
+
+@media screen and (max-width: 900px) {
+    .nav-Filters{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content:space-evenly;
+    }
+
+    .nav-FilterItem{
+        width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+        padding: 2vw 0;
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-weight: 400;
+        border: none;
+        background: transparent;
+        text-align: center;
+        color: black;
+        min-width: 200px;
+    }
+
+    .nav-FilterItem-special{
+        width: 100%;
+        margin: 0;
+        text-decoration: none;
+        font-size: 1.5rem;
+        font-weight: 400;
+        border: none;
+        background: transparent;
+        text-align: center;
+        color: black;
+        min-width: 200px;
+
+        color: blue;
+    }
+}

@@ -1,0 +1,139 @@
+/* test remember to remove */
+html body {
+    background-color: rgb(184, 184, 184);
+  }
+
+/* main css */
+
+.ProfileContainer{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    margin-top: 3em;
+    margin-left: 10vw;
+    margin-right: 10vw;
+    padding: 2em;
+    background-color: white;
+    border-radius: 1em;
+}
+
+
+.ProfilePicContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+    flex-direction: column;
+}
+
+
+/* Profile Pic + Name */
+
+@media screen and (min-width: 0px) {
+    .Profile_Picture{
+        border: 2px solid black;
+        border-radius: 50%;
+        min-width: 20vw;
+        min-height: 20vw;
+        width: 1em;
+    }
+
+
+    .Profile_Person_Name{
+        font-size: 6vw;
+        font-weight: 500;  
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .Profile_Picture{
+        border: 2px solid black;
+        border-radius: 50%;
+        min-width: 10em;
+        min-height: 10em;
+    }
+    
+    .Profile_Person_Name{
+        font-size: 3em;
+        font-weight: 500;  
+        text-align: center;
+    }
+    
+}
+
+
+/* Description Container css*/
+
+
+.Profile_Container{
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/* Description css */
+
+#location{
+    padding: 10px;
+    font-size: 1rem;
+}
+
+/* 0-900px width */
+
+@media screen and (max-width: 900px) {
+
+
+    .Title{
+        border-bottom: 2px solid black;
+        padding: 0.25em;
+        padding-top: 1vw;
+        font-size: 3vw;
+    }
+    
+    .Detail{
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        font-size: 3vw;
+    }
+
+    .MyLoc{
+        display: flex;
+        text-align: center;
+        padding: 10px;
+        font-size: 3vw;
+    }
+}
+
+/* After 900px width */
+
+@media screen and (min-width:900px){
+
+    .Title{
+        border-bottom: 2px solid black;
+        padding: 0.25em;
+        padding-top: 1vw;
+        font-size: 1.7em;
+    }
+    
+    .Detail{
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        font-size: 1.7em;
+    }
+
+    .MyLoc{
+        display: flex;
+        text-align: center;
+        padding: 10px;
+        font-size: 1.7em;
+    }
+
+}    
+    
