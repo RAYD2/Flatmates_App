@@ -1,0 +1,168 @@
+/* test remember to remove */
+html body {
+    background-color: rgb(184, 184, 184);
+}
+
+body {
+    margin: 0;
+    /* Other styles... */
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+/* main css */
+
+.ProfilesContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.ProfileContainer {
+    flex: 0 1 300px; /* This allows the boxes to be responsive and have a max-width of 300px */
+    margin: 10px;
+    padding: 2em;
+    background-color: white;
+    border-radius: 1em;
+    /* ... other styles ... */
+}
+
+/* Profile Pic + Name */
+
+@media screen and (min-width: 0px) {
+    .Profile_Picture {
+        border: 2px solid black;
+        border-radius: 50%;
+        min-width: 20vw;
+        min-height: 20vw;
+        width: 1em;
+    }
+
+    .Profile_Person_Name {
+        font-size: 2vw; /* Reduced font size */
+        font-weight: 500;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .Profile_Picture {
+        border: 2px solid black;
+        border-radius: 50%;
+        min-width: 10em;
+        min-height: 10em;
+    }
+
+    .Profile_Person_Name {
+        font-size: 1.5em; /* Reduced font size */
+        font-weight: 500;
+        text-align: center;
+    }
+}
+
+/* Description Container css*/
+
+.Profile_Container {
+    display: flex;
+    flex-direction: column;
+    width:95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Description css */
+
+#location {
+    padding: 10px;
+    font-size: 0.8rem; /* Reduced font size */
+}
+
+/* Navbar styles */
+.nav-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0; /* Added for clarity */
+    width: 100%;
+    background-color: #fff;
+    z-index: 1000;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.nav-title {
+    margin-right: 20px;
+    font-size: 16px; /* Reduced font size */
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+}
+
+.nav-list {
+    display: flex;
+    align-items: center;
+}
+
+.nav-list a {
+    margin-right: 20px;
+    font-size: 14px; /* Reduced font size */
+    color: #333;
+    text-decoration: none;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+
+.form-control {
+    margin-right: 10px;
+    flex-grow: 1;
+}
+
+/* Additional styles for mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .nav-title {
+        font-size: 14px; /* Reduced font size */
+    }
+
+    .nav-list a {
+        font-size: 12px; /* Reduced font size */
+    }
+}
+
+/* After 900px width */
+
+@media screen and (min-width: 900px) {
+    .Title {
+        border-bottom: 2px solid black;
+        padding: 0.25em;
+        padding-top: 1vw;
+        font-size: 1.2em; /* Reduced font size */
+    }
+
+    .Detail {
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        font-size: 1.2em; /* Reduced font size */
+    }
+
+    .MyLoc {
+        display: flex;
+        text-align: center;
+        padding: 10px;
+        font-size: 1.2em; /* Reduced font size */
+    }
+}
