@@ -1,122 +1,138 @@
-.form-SearchBar{
-    display: flex;
-    flex-direction: row;
+/* Base reset for better cross-browser consistency */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for FilterBar and NavBar */
+.filter-bar-container {
+    position: relative;
+}
+
+/* Styles for the NavBar */
+.nav-container {
+    position: sticky;
+    top: 0;
     width: 100%;
-    margin-left: 1em;
-    padding-top: 1em;
-    padding-bottom: 1em;
-}
-
-.nav-SearchBar-Container{
-    background-color: grey;
+    background-color: #fff;
+    z-index: 10; /* Lowered from 1000 for standard z-index scale */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content:space-between;
+    justify-content: space-between; /* Spread out content */
     align-items: center;
+    padding: 0.5rem 1rem; /* Consistent padding */
 }
 
-.SearchButton{
-
+/* Navigation Links Style */
+.nav-left,
+.nav-list,
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Spacing between items */
 }
 
+.nav-title {
+    font-size: 1.25rem; /* 20px equivalent */
+    font-weight: bold;
+    color: #333;
+}
+
+.nav-list a {
+    font-size: 1rem; /* 16px equivalent */
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s ease; /* Smooth transition for hover */
+}
+
+.nav-list a:hover {
+    color: #007bff; /* Hover effect */
+}
+
+/* SearchBar Container */
+.nav-SearchBar-Container {
+    background-color: #f8f9fa;
+    padding: 0.5rem 1rem;
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    align-items: center; /* Center items horizontally */
+}
+
+/* Search and Filter Buttons */
+.button_search,
 .button {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50;
     border: none;
     border-radius: 0.5em;
     color: white;
-    padding: 1em 2vw;
-    margin-right: 1em;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 1em;
+    padding: 0.5rem 1rem;
+    font-size: 1rem; /* 16px equivalent */
     cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for hover */
 }
 
+.button_search:hover,
 .button:hover {
-background-color: #45a049; /* Darker green */
+    background-color: #45a049;
 }
 
-.nav-FilterContainer{
+/* Filters container */
+.nav-Filters {
     display: flex;
-    justify-content:space-between;
-    align-items: center;
-    background: #f8f9fa;
-    width: 100%;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 0.5rem; /* Add margin to separate from search bar */
 }
 
-
-/* Options ALL contianer */
-.nav-Filters{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content:space-evenly;
-}
-
-
-/* option sub container */
-
-.nav-FilterItem{
-    width: 100%;
-    margin: 1vw;
-    text-decoration: none;
-    font-size: 1.5rem;
+/* Filter Items Style */
+.nav-FilterItem {
+    font-size: 1.125rem; /* 18px equivalent */
     font-weight: 400;
-    border: none;
     background: transparent;
     text-align: center;
     color: black;
-    min-height: 75px;
+    cursor: pointer;
+    padding: 0.5rem 1rem; /* Consistent padding */
+    width: 250px; /* Fixed width for filter items */
 }
 
-/* special css */
-.nav-FilterItem-special{
-    margin: 1em;
-    text-decoration: none;
-    font-size: 1.5rem;
-    font-weight: 400;
-    border: none;
-    background: transparent;
-    text-align: center;
+.nav-FilterItem:not(:last-child) {
+    margin-right: 1rem; /* Spacing between items, except last one */
+}
+
+
+.nav-FilterItem:not(:last-child) {
+    margin-right: 1rem; /* Spacing between items, except last one */
+}
+
+
+.nav-FilterItem-special {
     color: blue;
 }
 
-
-@media screen and (max-width: 900px) {
-    .nav-Filters{
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content:space-evenly;
+/* Mobile-first approach */
+@media screen and (min-width: 768px) {
+    /* Adjust font-sizes for larger screens */
+    .nav-title {
+        font-size: 1.5rem; /* 24px equivalent */
     }
 
-    .nav-FilterItem{
-        width: 100%;
-        margin-left: 0;
-        margin-right: 0;
-        padding: 2vw 0;
-        text-decoration: none;
-        font-size: 1.5rem;
-        font-weight: 400;
-        border: none;
-        background: transparent;
-        text-align: center;
-        color: black;
-        min-width: 200px;
+    .nav-list a {
+        font-size: 1.25rem; /* 20px equivalent */
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .nav-SearchBar-Container {
+        flex-direction: row; /* Revert to default for larger screens */
+        justify-content: space-between; /* Spread items horizontally */
     }
 
-    .nav-FilterItem-special{
-        width: 100%;
-        margin: 0;
-        text-decoration: none;
-        font-size: 1.5rem;
-        font-weight: 400;
-        border: none;
-        background: transparent;
-        text-align: center;
-        color: black;
-        min-width: 200px;
-
-        color: blue;
+    .nav-Filters {
+        margin-top: 0; /* Reset margin */
     }
 }
