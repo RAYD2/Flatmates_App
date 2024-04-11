@@ -69,6 +69,17 @@ function NavBar() {
               Profile
             </Link>
 
+            <Link
+              to="/MatchingEmployee"
+              className={
+                location.pathname === "/MatchingEmployee"
+                  ? "nav-selected"
+                  : "nav-default"
+              }
+            >
+              Matching
+            </Link>
+
             {loggedId === null ? (
               <Link
                 to="/login"
