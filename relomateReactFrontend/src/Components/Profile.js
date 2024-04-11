@@ -274,10 +274,10 @@ const Profile = () => {
                 />
               )
             ) : publicProfile ? (
-              <img src={profileImage} className="profile-picture" />
+              <img src={profileImage} className="profiles-picture" />
             ) : (
               <div className="picture-selected">
-                <img src={profileImage} className="profile-picture" />
+                <img src={profileImage} className="profiles-picture" />
                 <input
                   type="file"
                   className="profile-picture-input"

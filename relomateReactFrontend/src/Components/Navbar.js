@@ -69,6 +69,17 @@ function NavBar() {
               Profile
             </Link>
 
+            <Link
+              to="/users"
+              className={
+                location.pathname === "/users"
+                  ? "nav-selected"
+                  : "nav-default"
+              }
+            >
+              Users
+            </Link>
+
             {loggedId === null ? (
               <Link
                 to="/login"
