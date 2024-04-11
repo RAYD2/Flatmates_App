@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Filters from "./Pages/filter";
 import Results from "./Pages/results";
 import Profile from "./Components/Profile";
+import FindUser from "./Components/FindCommonUser"
 import AddPropertyInput from "./Components/addObject";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
@@ -34,6 +35,7 @@ function App() {
           <Route exact path="/input" element={<AddPropertyInput />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
+          <Route exact path="/MatchingEmployee" element={<FindUser />}/>
         </Routes>
       </Router>
     </>

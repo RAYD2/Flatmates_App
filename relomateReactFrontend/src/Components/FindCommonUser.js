@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../../ComponentStyles/MatchEmployeeCss/MatchingEmployeePage.css";
-import NavBar from "../Navbar.js"; // Import the NavBar component
+import "../ComponentStyles/MatchingEmployeePage.css";
+import NavBar from "../Components/Navbar.js"; // Import the NavBar component
 
 
 
 // change this line. so it can import profile pic from somewhere better
-import img from "../../assets/livingRoom.png"
+import img from "../assets/livingRoom.png"
 
 
 function FindUser(){
